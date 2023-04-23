@@ -7,7 +7,7 @@
 <style scoped lang="scss">
 .layout {
   height: 100vh;
-  background-color: $color_white;
+  background-color: darken($color_white, 2);
   display: flex;
   justify-content: center;
   align-items: center;
