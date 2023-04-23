@@ -1,7 +1,10 @@
 <template>
 	<button
 	  class="btn"
-	  :class="[{disabled: disabled}, color]"
+	  :class="[color, {
+          disabled: disabled,
+          large: large
+      }]"
 	  :disabled="disabled"
 	>
 		<slot />
@@ -15,6 +18,7 @@ import Color from "~/enums/Color";
 interface IProps {
     color: Color;
     disabled: boolean;
+    large: boolean;
 }
 
 const props: IProps = defineProps({
@@ -26,6 +30,11 @@ const props: IProps = defineProps({
         type: Boolean,
 		required: false,
 		default: false,
+	},
+	large: {
+        type: Boolean,
+		required: false,
+		default: false
 	}
 });
 </script>
@@ -36,6 +45,10 @@ const props: IProps = defineProps({
   padding: 10px 15px;
   border: unset;
   border-radius: $border_radius;
+  
+  &.large {
+	width: 100%;
+  }
   
   &.disabled {
     background-color: $color_gray!important;
@@ -71,6 +84,13 @@ const props: IProps = defineProps({
   &.emerald {
     background-color: $color_emerald;
     color: $color_white;
+  }
+  &.emerald-gradient {
+    color: $color_white;
+    background: linear-gradient(to right, $color_emerald, rgb(51, 139, 147));
+	&:hover {
+      background: linear-gradient(to right, rgb(51, 139, 147), $color_emerald);
+	}
   }
 }
 </style>

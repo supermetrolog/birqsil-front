@@ -1,8 +1,8 @@
 <template>
 	<div class="signup">
 		<Card>
-			<div class="logo text-center">
-				Logo
+			<div class="logo">
+				<p>bir<span>q</span>sil</p>
 			</div>
 			<Form @submit.prevent="handleSubmit">
 				<Input
@@ -25,8 +25,8 @@
                 />
 				<div class="submit-button-container">
                     <Button
-					  :color="Color.EMERALD"
-					  :disabled="!$v.$dirty || $v.$error"
+					  :color="Color.EMERALD_GRADIENT"
+					  :large="true"
 					>
                         Sing Up
                     </Button>
@@ -43,11 +43,11 @@ import Form from "~/components/common/form/Form.vue";
 import Button from "~/components/common/Button.vue";
 import Color from "~/enums/Color";
 import InputType from "~/enums/InputType";
-import V from "~/decorators/Validate";
+import V from "~/domain/adapters/Validate";
 
 import {email, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import AuthService, {ISignUpData} from "~/services/AuthService";
+import AuthService, {ISignUpData} from "~/domain/services/AuthService";
 
 const service: AuthService = new AuthService('fuck');
 
@@ -90,10 +90,25 @@ const handleSubmit = async () => {
 <style scoped lang="scss">
 .signup {
   display: flex;
+  width: 400px;
+}
+.logo {
+  p {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 42px;
+    font-weight: bold;
+	letter-spacing: 5px;
+    font-style: italic;
+	span {
+	  color: $color_emerald;
+	}
+  }
 }
 .submit-button-container {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
+  margin-top: $gap1;
+  button {
+    font-weight: bold;
+  }
 }
 </style>

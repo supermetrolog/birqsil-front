@@ -3,7 +3,8 @@ enum Color {
     SUCCESS = 'success',
     DANGER = 'danger',
     WARNING = 'warning',
-    EMERALD = 'emerald'
+    EMERALD = 'emerald',
+    EMERALD_GRADIENT = 'emerald-gradient'
 };
 
 export default Color;

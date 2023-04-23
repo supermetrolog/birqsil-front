@@ -1,6 +1,6 @@
 import InputType from "~/enums/InputType";
 import {PropType} from "@vue/runtime-core";
-import Validator from "~/interfaces/Validator";
+import Validator from "~/domain/interfaces/Validator";
 
 export default (): Validator => {
     interface IProps {

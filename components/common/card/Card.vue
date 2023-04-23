@@ -9,9 +9,10 @@
 
 <style scoped lang="scss">
 	.card {
+	  width: 100%;
       background-color: white;
 	  border: 1px solid darken($color_white, 5);
-	  padding: 2rem;
+	  padding: $gap6;
 	  border-radius: $border_radius;
 	}
 </style>

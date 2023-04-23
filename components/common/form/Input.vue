@@ -10,19 +10,21 @@
 			:value="modelValue"
             @input.prevent="handleInput($event.target.value.trim())"
 		/>
+		<ValidateError :v="v" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import InputType from "~/enums/InputType";
 import {PropType} from "@vue/runtime-core";
-import Validator from "~/interfaces/Validator";
+import Validator from "~/domain/interfaces/Validator";
+import ValidateError from "~/components/common/form/ValidateError.vue";
 
 interface IProps {
     modelValue: string|number;
     type: InputType;
     label: string;
-    v: Validator|ExtraRul
+    v: Validator
 }
 
 const props: IProps = defineProps({
@@ -54,6 +56,9 @@ const handleInput = async (value: string) => {
 </script>
 
 <style scoped lang="scss">
+.container {
+  margin: $gap1 0;
+}
 .label {
   display: block;
   text-transform: capitalize;
@@ -67,8 +72,8 @@ const handleInput = async (value: string) => {
   font-size: 18px;
   
   &:focus {
-    border: 1px solid $color_emerald;
-	outline: 1px solid $color_emerald;
+    border: 1px solid rgba($color_emerald, 0.1);
+	outline: 1px solid rgba($color_emerald, 0.1);
   }
 }
 </style>
