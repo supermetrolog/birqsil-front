@@ -22,5 +22,29 @@ export default defineNuxtConfig({
                 }
             }
         }
-    }
+    },
+    modules: [
+        '@nuxtjs/i18n',
+    ],
+    i18n: {
+        lazy: true,
+        langDir: "locales",
+        strategy: "prefix_except_default",
+        locales: [
+            {
+                code: "en-US",
+                iso: "en-US",
+                name: "English(US)",
+                file: "en-US.json",
+            },
+            {
+                code: "ru-RU",
+                iso: "ru-RU",
+                name: "Russian(RU)",
+                file: "ru-RU.json",
+            },
+        ],
+        defaultLocale: "en-US",
+        fallbackLocale: "en-US",
+    },
 })

@@ -7,19 +7,19 @@
 			<Form @submit.prevent="handleSubmit">
 				<Input
 					:type="InputType.TEXT"
-					label="Email"
+					:label="$t('email')"
 					:v="new V($v.email)"
 					v-model="form.email"
 				/>
 				<Input
 					:type="InputType.PASSWORD"
-					label="Password"
+                    :label="$t('password')"
                     :v="new V($v.password)"
 					v-model="form.password"
 				/>
                 <Input
 					:type="InputType.PASSWORD"
-					label="Password repeat"
+                    :label="$t('password repeat')"
                     :v="new V($v.passwordRepeat)"
 					v-model="form.passwordRepeat"
                 />
@@ -44,7 +44,6 @@ import Button from "~/components/common/Button.vue";
 import Color from "~/enums/Color";
 import InputType from "~/enums/InputType";
 import V from "~/domain/adapters/Validate";
-
 import {email, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import AuthService, {ISignUpData} from "~/domain/services/AuthService";
