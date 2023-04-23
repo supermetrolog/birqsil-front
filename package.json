@@ -12,5 +12,9 @@
     "@types/node": "^18",
     "nuxt": "^3.4.2",
     "sass": "^1.62.0"
+  },
+  "dependencies": {
+    "@vuelidate/core": "^2.0.2",
+    "@vuelidate/validators": "^2.0.2"
   }
 }

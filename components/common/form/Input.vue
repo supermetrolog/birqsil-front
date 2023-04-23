@@ -16,11 +16,13 @@
 <script setup lang="ts">
 import InputType from "~/enums/InputType";
 import {PropType} from "@vue/runtime-core";
+import Validator from "~/interfaces/Validator";
 
 interface IProps {
     modelValue: string|number;
     type: InputType;
     label: string;
+    v: Validator|ExtraRul
 }
 
 const props: IProps = defineProps({
@@ -36,11 +38,17 @@ const props: IProps = defineProps({
         type: String,
 		default: ''
     },
+    v: {
+        type: Object as PropType<Validator>,
+        required: true,
+    },
 })
 
 const emit = defineEmits(['update:modelValue'])
-const handleInput = (value: string) => {
+const handleInput = async (value: string) => {
     emit("update:modelValue", value);
+    props.v.$touch();
+    console.log(await props.v.$validate());
 }
 
 </script>
