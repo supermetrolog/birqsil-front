@@ -1,13 +1,15 @@
 <template>
 	<div class="layout">
-		Auth layout
 		<slot />
 	</div>
 </template>
 
 <style scoped lang="scss">
 .layout {
-  background-color: red;
-  color: $color_primary;
+  height: 100vh;
+  background-color: $color_white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
