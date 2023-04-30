@@ -1,5 +1,5 @@
 import Auth from "~/domain/components/api/Auth";
-import axios from "axios";
+import axios, {AxiosStatic} from "axios";
 import User from "~/domain/components/api/User";
 
 export default class API {
@@ -11,10 +11,14 @@ export default class API {
     constructor(baseUrl: string) {
         console.log("CREATE API");
         this.baseUrl = baseUrl;
+        this.configureAxios();
         this._auth = new Auth(axios);
         this._user = new User(axios);
     }
 
+    private configureAxios(): void {
+        axios.defaults.baseURL = this.baseUrl;
+    }
     get auth(): Auth {
         return this._auth;
     }

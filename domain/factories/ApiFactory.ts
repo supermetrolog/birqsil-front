@@ -1,5 +1,4 @@
 import API from "~/domain/components/api/API";
-import api from "~/plugins/api";
 
 export default class ApiFactory {
     private static api: API

@@ -7,10 +7,12 @@ export interface ISignUpData {
     passwordRepeat: string;
 };
 
+export interface IAccessToken {
+    accessToken: string;
+}
 export default class Auth extends BaseApi {
-    public signup(data: ISignUpData): boolean
+    public async signup(data: ISignUpData): Promise<IAccessToken>
     {
-        console.log(data);
-        return false;
+        return await this.post('signup', data);
     }
 }
