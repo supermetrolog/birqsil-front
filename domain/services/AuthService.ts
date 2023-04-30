@@ -1,13 +1,7 @@
-import API from "~/domain/components/api/API";
 import {ISignUpData} from "~/domain/components/api/Auth";
+import BaseService from "~/domain/services/BaseService";
 
-export default class {
-    api: API;
-
-    constructor(api: API) {
-        this.api = api;
-    }
-
+export default class extends BaseService {
     signUp(data: ISignUpData): boolean {
         return this.api.auth.signup(data);
     }

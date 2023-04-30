@@ -1,5 +1,6 @@
 {
   "email": "Email",
   "password": "Password",
-  "passwordRepeat": "Password repeat"
+  "password repeat": "Password repeat",
+  "Email already used": "Email already used"
 }

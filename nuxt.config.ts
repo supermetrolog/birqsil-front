@@ -10,6 +10,9 @@ export default defineNuxtConfig({
             }
         }
     },
+    typescript: {
+        strict: true
+    },
     css: [
         '@/assets/styles/null.scss',
         '@/assets/styles/main.scss',

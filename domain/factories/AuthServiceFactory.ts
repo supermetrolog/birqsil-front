@@ -1,14 +1,13 @@
 import AuthService from "~/domain/services/AuthService";
-import API from "~/domain/components/api/API";
 import ApiFactory from "~/domain/factories/ApiFactory";
 
 export default class AuthServiceFactory {
-    private readonly apiFactory: ApiFactory
-    constructor() {
-        this.apiFactory = new ApiFactory();
-    }
+    private static service: AuthService;
 
-    create(): AuthService {
-        return new AuthService(this.apiFactory.create());
+    static create(): AuthService {
+        if (!this.service) {
+            this.service = new AuthService(ApiFactory.create());
+        }
+        return this.service;
     }
 }

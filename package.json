@@ -17,6 +17,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@vuelidate/core": "^2.0.2",
-    "@vuelidate/validators": "^2.0.2"
+    "@vuelidate/validators": "^2.0.2",
+    "crypto-js": "^4.1.1"
   }
 }

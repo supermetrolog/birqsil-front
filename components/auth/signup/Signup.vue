@@ -17,14 +17,12 @@
                     :v="new V($v.password)"
 					v-model="form.password"
 				/>
-                {{ $hello('world') }}
                 <Input
 					:type="InputType.PASSWORD"
-                    :label="$t('passwordRepeat')"
+                    :label="$t('password repeat')"
                     :v="new V($v.passwordRepeat)"
 					v-model="form.passwordRepeat"
                 />
-                {{ $hello('world') }}
 				<div class="submit-button-container">
                     <Button
 					  :color="Color.EMERALD_GRADIENT"
@@ -46,31 +44,37 @@ import Button from "~/components/common/Button.vue";
 import Color from "~/enums/Color";
 import InputType from "~/enums/InputType";
 import V from "~/domain/adapters/Validate";
-import {email, required, sameAs} from "@vuelidate/validators";
+import {email, helpers, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import AuthService from "~/domain/services/AuthService";
 import AuthServiceFactory from "~/domain/factories/AuthServiceFactory";
 import {ISignUpData} from "~/domain/components/api/Auth";
-const authServiceFactory: AuthServiceFactory = new AuthServiceFactory();
+import UserServiceFactory from "~/domain/factories/UserServiceFactory";
+import UserService from "~/domain/services/UserService";
+import timeout from "~/validators/timeout";
 
-const { $hello } = useNuxtApp();
-
-const service: AuthService = authServiceFactory.create();
+const { $i18n } = useNuxtApp();
+const authService: AuthService = AuthServiceFactory.create();
+const userService: UserService = UserServiceFactory.create();
 
 const form: ISignUpData = reactive({
 	email: "",
 	password: "",
 	passwordRepeat: ""
 });
-
 const rules = computed(() => {
    return {
 		email: {
 			required,
-			email
+			email,
+			isUnique: helpers.withMessage(
+                $i18n.t('Email already used'),
+				helpers.withAsync(timeout(1000, isEmailTaken))
+			)
 		},
 		password: {
 			required,
+			minLength: minLength(8)
 		},
 		passwordRepeat: {
 			required,
@@ -79,16 +83,21 @@ const rules = computed(() => {
    };
 });
 
+const isEmailTaken = async (value: string): Promise<boolean> => {
+    if (value === '') return true;
+    return await userService.checkEmailExists(value);
+};
+
 const $v = useVuelidate(rules, form);
 
 const handleSubmit = async () => {
     await $v.value.$validate();
+    
     if ($v.value.$error){
         return;
 	}
-    
-    service.signUp(form);
-    console.log("SUBMIT");
+
+    authService.signUp(form);
 };
 
 </script>

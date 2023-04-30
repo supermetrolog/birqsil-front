@@ -1,7 +1,13 @@
 import API from "~/domain/components/api/API";
+import api from "~/plugins/api";
 
 export default class ApiFactory {
-    create(): API {
-        return new API('http://localhost:21900/v1');
+    private static api: API
+
+    static create(): API {
+        if (!this.api) {
+            this.api = new API('http://localhost:21900/v1');
+        }
+        return this.api;
     }
 }
