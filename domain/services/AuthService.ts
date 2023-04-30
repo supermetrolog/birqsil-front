@@ -1,17 +1,14 @@
-export interface ISignUpData {
-    email: string;
-    password: string;
-    passwordRepeat: string;
-};
+import API from "~/domain/components/api/API";
+import {ISignUpData} from "~/domain/components/api/Auth";
 
 export default class {
-    api: any;
+    api: API;
 
-    constructor(api: any) {
+    constructor(api: API) {
         this.api = api;
     }
 
     signUp(data: ISignUpData): boolean {
-        return false;
+        return this.api.auth.signup(data);
     }
 }

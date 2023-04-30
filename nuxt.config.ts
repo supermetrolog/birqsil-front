@@ -30,6 +30,8 @@ export default defineNuxtConfig({
         lazy: true,
         langDir: "locales",
         strategy: "prefix_except_default",
+        defaultLocale: "en-US",
+        fallbackLocale: "en-US",
         locales: [
             {
                 code: "en-US",
@@ -44,7 +46,5 @@ export default defineNuxtConfig({
                 file: "ru-RU.json",
             },
         ],
-        defaultLocale: "en-US",
-        fallbackLocale: "en-US",
     },
 })

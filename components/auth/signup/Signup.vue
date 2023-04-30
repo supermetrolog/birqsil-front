@@ -17,12 +17,14 @@
                     :v="new V($v.password)"
 					v-model="form.password"
 				/>
+                {{ $hello('world') }}
                 <Input
 					:type="InputType.PASSWORD"
-                    :label="$t('password repeat')"
+                    :label="$t('passwordRepeat')"
                     :v="new V($v.passwordRepeat)"
 					v-model="form.passwordRepeat"
                 />
+                {{ $hello('world') }}
 				<div class="submit-button-container">
                     <Button
 					  :color="Color.EMERALD_GRADIENT"
@@ -46,9 +48,14 @@ import InputType from "~/enums/InputType";
 import V from "~/domain/adapters/Validate";
 import {email, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import AuthService, {ISignUpData} from "~/domain/services/AuthService";
+import AuthService from "~/domain/services/AuthService";
+import AuthServiceFactory from "~/domain/factories/AuthServiceFactory";
+import {ISignUpData} from "~/domain/components/api/Auth";
+const authServiceFactory: AuthServiceFactory = new AuthServiceFactory();
 
-const service: AuthService = new AuthService('fuck');
+const { $hello } = useNuxtApp();
+
+const service: AuthService = authServiceFactory.create();
 
 const form: ISignUpData = reactive({
 	email: "",
@@ -76,10 +83,10 @@ const $v = useVuelidate(rules, form);
 
 const handleSubmit = async () => {
     await $v.value.$validate();
-    
     if ($v.value.$error){
         return;
 	}
+    
     service.signUp(form);
     console.log("SUBMIT");
 };
