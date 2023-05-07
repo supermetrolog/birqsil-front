@@ -1,7 +1,13 @@
 import BaseApi from "~/domain/components/api/BaseApi";
+import {integer} from "vscode-languageserver-types";
 
 export interface IEmailExistsResponse {
     exists: boolean
+}
+
+export interface IUser {
+    id: integer,
+    email: string
 }
 
 export default class User extends BaseApi {
@@ -12,5 +18,24 @@ export default class User extends BaseApi {
                 email
             }
         });
+    }
+
+    public async findByAccessToken(token: string): Promise<IUser|null> {
+        return {
+            email: "fuck@suck.ru",
+            id: 12
+        };
+
+        // const users: IUser[] = await this.get('user/search', {
+        //     params: {
+        //         access_token: token
+        //     }
+        // });
+        //
+        // if (users.length) {
+        //     return users[0];
+        // }
+        //
+        // return null;
     }
 }

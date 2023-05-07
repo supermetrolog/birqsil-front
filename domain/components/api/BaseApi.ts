@@ -1,4 +1,4 @@
-import {AxiosResponse, AxiosStatic} from "axios";
+import {AxiosRequestConfig, AxiosResponse, AxiosStatic} from "axios";
 import {a} from "vite-node/types-c39b64bb";
 
 export default class BaseApi {
@@ -12,12 +12,12 @@ export default class BaseApi {
         return this._axios;
     }
 
-    public async get(path: string, options: Object): Promise<any> {
+    public async get(path: string, options: AxiosRequestConfig = {}): Promise<any> {
         const res: AxiosResponse = await this.axios.get(path, options);
         return res.data;
     }
 
-    public async post(path: string, data: any, options: Object = {}): Promise<any> {
+    public async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<any> {
         const res: AxiosResponse = await this.axios.post(path, data, options);
         return res.data;
     }

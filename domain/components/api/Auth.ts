@@ -1,4 +1,3 @@
-import {AxiosStatic} from "axios";
 import BaseApi from "~/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 

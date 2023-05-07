@@ -52,10 +52,12 @@ import {ISignUpData} from "~/domain/components/api/Auth";
 import UserServiceFactory from "~/domain/factories/UserServiceFactory";
 import UserService from "~/domain/services/UserService";
 import timeout from "~/validators/timeout";
+import {useUser} from "~/composables/user";
 
 const { $i18n } = useNuxtApp();
 const authService: AuthService = AuthServiceFactory.create();
 const userService: UserService = UserServiceFactory.create();
+const storage = useStorage();
 
 const form: ISignUpData = reactive({
 	email: "",
@@ -82,8 +84,6 @@ const rules = computed(() => {
 		}
    };
 });
-
-
 const isEmailTaken = async (value: string): Promise<boolean> => {
     if (value === '') return true;
     return !await userService.checkEmailExists(value);
@@ -99,8 +99,7 @@ const handleSubmit = async () => {
 	}
 
     const AccessToken = await authService.signUp(form);
-    console.log(AccessToken.token);
-    console.log(AccessToken.expire);
+    console.log(storage.value);
 };
 
 </script>
