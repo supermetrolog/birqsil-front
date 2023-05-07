@@ -52,12 +52,11 @@ import {ISignUpData} from "~/domain/components/api/Auth";
 import UserServiceFactory from "~/domain/factories/UserServiceFactory";
 import UserService from "~/domain/services/UserService";
 import timeout from "~/validators/timeout";
-import {useUser} from "~/composables/user";
+import {NuxtApp} from "#app";
 
-const { $i18n } = useNuxtApp();
+const { $i18n }: NuxtApp  = useNuxtApp();
 const authService: AuthService = AuthServiceFactory.create();
 const userService: UserService = UserServiceFactory.create();
-const storage = useStorage();
 
 const form: ISignUpData = reactive({
 	email: "",
@@ -90,6 +89,7 @@ const isEmailTaken = async (value: string): Promise<boolean> => {
 };
 
 const $v = useVuelidate(rules, form);
+const emit = defineEmits(['signup'])
 
 const handleSubmit = async () => {
     await $v.value.$validate();
@@ -98,8 +98,8 @@ const handleSubmit = async () => {
         return;
 	}
 
-    const AccessToken = await authService.signUp(form);
-    console.log(storage.value);
+    await authService.signUp(form);
+    emit('signup');
 };
 
 </script>

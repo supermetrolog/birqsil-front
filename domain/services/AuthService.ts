@@ -11,7 +11,7 @@ export default class AuthService extends BaseService {
         this.user = user;
     }
 
-    public async signUp(data: ISignUpData): Promise<IAccessToken> {
+    public async signUp(data: ISignUpData): Promise<void> {
         const accessToken: IAccessToken = await this.api.auth.signup(data);
         const user: IUser|null = await this.api.user.findByAccessToken(accessToken.token);
         if (!user) {

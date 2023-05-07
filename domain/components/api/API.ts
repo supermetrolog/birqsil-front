@@ -9,7 +9,6 @@ export default class API {
     private readonly _user: User
 
     constructor(baseUrl: string) {
-        console.log("CREATE API");
         this.baseUrl = baseUrl;
         this.configureAxios();
         this._auth = new Auth(axios);
