@@ -1,5 +1,6 @@
 import {AxiosStatic} from "axios";
 import BaseApi from "~/domain/components/api/BaseApi";
+import {integer} from "vscode-languageserver-types";
 
 export interface ISignUpData {
     email: string;
@@ -8,7 +9,8 @@ export interface ISignUpData {
 };
 
 export interface IAccessToken {
-    accessToken: string;
+    token: string;
+    expire: integer;
 }
 export default class Auth extends BaseApi {
     public async signup(data: ISignUpData): Promise<IAccessToken>

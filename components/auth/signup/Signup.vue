@@ -83,9 +83,10 @@ const rules = computed(() => {
    };
 });
 
+
 const isEmailTaken = async (value: string): Promise<boolean> => {
     if (value === '') return true;
-    return await userService.checkEmailExists(value);
+    return !await userService.checkEmailExists(value);
 };
 
 const $v = useVuelidate(rules, form);
@@ -97,7 +98,9 @@ const handleSubmit = async () => {
         return;
 	}
 
-    authService.signUp(form);
+    const AccessToken = await authService.signUp(form);
+    console.log(AccessToken.token);
+    console.log(AccessToken.expire);
 };
 
 </script>

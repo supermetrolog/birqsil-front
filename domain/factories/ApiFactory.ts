@@ -5,7 +5,7 @@ export default class ApiFactory {
 
     static create(): API {
         if (!this.api) {
-            this.api = new API('http://localhost:21900/v1');
+            this.api = new API('http://api.birqsil.ru/v1');
         }
         return this.api;
     }
