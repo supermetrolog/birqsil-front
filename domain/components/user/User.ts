@@ -11,6 +11,12 @@ export interface IUser {
     email: string
 }
 
+interface StorageData {
+    accessToken: IAccessToken,
+    identity: IUser,
+    isGuest: boolean
+}
+
 export default class User {
     private _identity: IUser|null = null;
     private _accessToken: IAccessToken;
@@ -39,7 +45,14 @@ export default class User {
         this._isGuest = false;
         this._identity = identity;
         this._accessToken = accessToken;
-        this.storage.set(STORAGE_KEY, this, accessToken.expire);
+
+        const storageDto: StorageData = {
+            isGuest: false,
+            identity: identity,
+            accessToken: accessToken
+        };
+
+        this.storage.set(STORAGE_KEY, storageDto, accessToken.expire);
         this.setUpAxios();
     }
     public can(permission: string): boolean {
@@ -51,12 +64,12 @@ export default class User {
     }
 
     public init(): void {
-        const userItem: StorageItem | null = this.storage.get(STORAGE_KEY);
+        const userItem: StorageItem|null= this.storage.get(STORAGE_KEY);
         if (userItem) {
-            const user: this = userItem.data as this;
-            this._isGuest = false;
-            this._identity = user._identity;
-            this._accessToken = user._accessToken;
+            const data = userItem.data as StorageData;
+            this._isGuest = data.isGuest;
+            this._identity = data.identity;
+            this._accessToken = data.accessToken;
             this.setUpAxios();
         }
     }

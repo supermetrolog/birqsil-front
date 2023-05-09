@@ -60,8 +60,8 @@ const userService: UserService = UserServiceFactory.create();
 
 const form: ISignUpData = reactive({
 	email: "",
-	password: "",
-	passwordRepeat: ""
+	password: "12345678",
+	passwordRepeat: "12345678"
 });
 const rules = computed(() => {
    return {
