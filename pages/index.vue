@@ -1,21 +1,24 @@
 <template>
     <h1>BIRQSIL</h1>
-    <h1 v-if="!user.isGuest">User: {{user.identity.email}}</h1>
+    <h1 v-if="!$user.isGuest">User: {{$user.identity.email}}</h1>
+    <button @click="signOutHandler">Logout</button>
 </template>
 
 <script setup lang="ts">
 
-import User from "~/domain/components/user/User";
-import UserComponentFactory from "~/domain/factories/UserComponentFactory";
 import {NuxtApp} from "#app";
+import Route from "~/enums/Route";
 
-const { $router }: NuxtApp = useNuxtApp();
+const { $router, $user }: NuxtApp = useNuxtApp();
 
-const user: User = UserComponentFactory.create();
-
-if (user.isGuest) {
-    $router.push('auth/signup');
+if ($user.isGuest) {
+    $router.push(Route.AUTH_SIGNIN);
 }
+
+const signOutHandler = () => {
+    $user.logout();
+    $router.push(Route.AUTH_SIGNIN);
+};
 </script>
 
 <style scoped>

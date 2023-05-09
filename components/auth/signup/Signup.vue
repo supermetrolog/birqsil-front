@@ -46,17 +46,11 @@ import InputType from "~/enums/InputType";
 import V from "~/domain/adapters/Validate";
 import {email, helpers, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import AuthService from "~/domain/services/AuthService";
-import AuthServiceFactory from "~/domain/factories/AuthServiceFactory";
 import {ISignUpData} from "~/domain/components/api/Auth";
-import UserServiceFactory from "~/domain/factories/UserServiceFactory";
-import UserService from "~/domain/services/UserService";
 import timeout from "~/validators/timeout";
 import {NuxtApp} from "#app";
 
-const { $i18n }: NuxtApp  = useNuxtApp();
-const authService: AuthService = AuthServiceFactory.create();
-const userService: UserService = UserServiceFactory.create();
+const { $i18n, $authService, $userService }: NuxtApp  = useNuxtApp();
 
 const form: ISignUpData = reactive({
 	email: "",
@@ -85,7 +79,7 @@ const rules = computed(() => {
 });
 const isEmailTaken = async (value: string): Promise<boolean> => {
     if (value === '') return true;
-    return !await userService.checkEmailExists(value);
+    return !await $userService.checkEmailExists(value);
 };
 
 const $v = useVuelidate(rules, form);
@@ -98,7 +92,7 @@ const handleSubmit = async () => {
         return;
 	}
 
-    await authService.signUp(form);
+    await $authService.signUp(form);
     emit('signup');
 };
 

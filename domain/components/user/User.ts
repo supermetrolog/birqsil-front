@@ -23,6 +23,7 @@ export default class User {
     private _isGuest: boolean = true;
     private storage: Storage;
     constructor(storage: Storage) {
+        console.log('CREATE  USER');
         this.storage = storage;
         this.init();
     }
