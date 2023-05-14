@@ -9,7 +9,7 @@ export default defineNuxtRouteMiddleware((to: RouteLocation, from: RouteLocation
     const ignoreRoutes: string[] = [
         Route.AUTH_SIGNIN,
         Route.AUTH_SIGNUP
-    ].map((el: string): string => '/' + el);
+    ];
 
     if (ignoreRoutes.includes(to.path)) {
         if (!user.isGuest) {
@@ -19,6 +19,6 @@ export default defineNuxtRouteMiddleware((to: RouteLocation, from: RouteLocation
     }
 
     if (user.isGuest) {
-        return navigateTo(Route.AUTH_SIGNUP);
+        return navigateTo(Route.AUTH_SIGNIN);
     }
 })

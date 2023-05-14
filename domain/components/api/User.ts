@@ -1,5 +1,6 @@
-import BaseApi from "~/domain/components/api/BaseApi";
+import BaseApi, {Response} from "~/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
+import {AxiosResponse} from "axios";
 
 export interface IEmailExistsResponse {
     exists: boolean
@@ -11,7 +12,7 @@ export interface IUser {
 }
 
 export default class User extends BaseApi {
-    public async checkEmailExists(email: string): Promise<IEmailExistsResponse>
+    public async checkEmailExists(email: string): Promise<Response>
     {
         return await this.get('user/check-email-exists',{
             params: {

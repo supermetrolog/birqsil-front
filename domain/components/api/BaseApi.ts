@@ -1,5 +1,34 @@
 import {AxiosRequestConfig, AxiosResponse, AxiosStatic} from "axios";
 import {a} from "vite-node/types-c39b64bb";
+import {integer} from "vscode-languageserver-types";
+
+export class Response {
+    private readonly _axiosResponse: AxiosResponse
+
+    constructor(response: AxiosResponse) {
+        this._axiosResponse = response;
+    }
+
+    get axiosResponse(): AxiosResponse {
+        return this._axiosResponse;
+    }
+
+    public status(): integer {
+        return this.axiosResponse.status;
+    }
+
+    public isOk(): boolean {
+        return this.status() >= 200 && this.status() < 300;
+    }
+
+    public isBadRequest(): boolean {
+        return this.status() >= 400 && this.status() < 500;
+    }
+
+    public data(): any {
+        return this.axiosResponse.data;
+    }
+}
 
 export default class BaseApi {
     private readonly _axios: AxiosStatic;
@@ -12,13 +41,25 @@ export default class BaseApi {
         return this._axios;
     }
 
-    public async get(path: string, options: AxiosRequestConfig = {}): Promise<any> {
-        const res: AxiosResponse = await this.axios.get(path, options);
-        return res.data;
+    public async get(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
+        const res: AxiosResponse = await this.axios.get(path, {
+            ...options,
+            validateStatus: function (status) {
+                return status < 500; // Resolve only if the status code is less than 500
+            }
+        });
+
+        return new Response(res);
     }
 
-    public async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<any> {
-        const res: AxiosResponse = await this.axios.post(path, data, options);
-        return res.data;
+    public async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<Response> {
+        const res: AxiosResponse = await this.axios.post(path, data, {
+            ...options,
+            validateStatus: function (status) {
+                return status < 500; // Resolve only if the status code is less than 500
+            }
+        });
+
+        return new Response(res);
     }
 }

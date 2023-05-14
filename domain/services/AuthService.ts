@@ -3,6 +3,7 @@ import BaseService from "~/domain/services/BaseService";
 import API from "~/domain/components/api/API";
 import User from "~/domain/components/user/User";
 import {IUser} from "~/domain/components/api/User";
+import {Response} from "~/domain/components/api/BaseApi";
 
 export default class AuthService extends BaseService {
     private user: User;
@@ -12,7 +13,19 @@ export default class AuthService extends BaseService {
     }
 
     public async signUp(data: ISignUpData): Promise<void> {
-        const accessToken: IAccessToken = await this.api.auth.signup(data);
+        const res: Response = await this.api.auth.signup(data);
+        const accessToken: IAccessToken = res.data();
+        await this.setUserByAccessToken(accessToken);
+    }
+
+    public async signIn(data: ISignUpData): Promise<boolean> {
+        const res: Response = await this.api.auth.signin(data);
+        const accessToken: IAccessToken = res.data();
+        console.log(accessToken);
+        await this.setUserByAccessToken(accessToken)
+    }
+
+    private async setUserByAccessToken(accessToken: IAccessToken): Promise<void> {
         const user: IUser|null = await this.api.user.findByAccessToken(accessToken.token);
         if (!user) {
             throw new Error('User not found');
