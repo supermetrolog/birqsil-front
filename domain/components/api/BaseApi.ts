@@ -28,6 +28,11 @@ export class Response {
     public data(): any {
         return this.axiosResponse.data;
     }
+
+    public getErrors(): string[]
+    {
+        return this.data().errors;
+    }
 }
 
 export default class BaseApi {

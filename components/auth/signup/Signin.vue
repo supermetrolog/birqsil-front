@@ -1,6 +1,7 @@
 <template>
     <div class="signin">
         <Form @submit.prevent="handleSubmit">
+            <ValidateError :errors="errors" />
             <Input
                     :type="InputType.TEXT"
                     :label="$t('email')"
@@ -41,6 +42,9 @@ import {ISignUpData} from "~/domain/components/api/Auth";
 import timeout from "~/validators/timeout";
 import {NuxtApp} from "#app";
 import Route from "~/enums/Route";
+import {Response} from "~/domain/components/api/BaseApi";
+import ValidateError from "~/components/common/form/ValidateError.vue";
+import {Ref} from "vue";
 
 const { $i18n, $authService, $userService, $toast }: NuxtApp  = useNuxtApp();
 
@@ -68,16 +72,31 @@ const isEmailTaken = async (value: string): Promise<boolean> => {
 const $v = useVuelidate(rules, form);
 const emit = defineEmits(['signin'])
 
-const handleSubmit = async () => {
+let errors: Ref<string[]> = ref([]);
+
+const setErrors = (errs: string[]) => {
+    errors.value = errs;
+};
+const resetErrors = () => {
+    errors.value = [];
+};
+
+const handleSubmit = async (): Promise<void> => {
+    resetErrors();
+    
     await $v.value.$validate();
 
     if ($v.value.$error){
         return;
     }
     
-    if (await $authService.signIn(form)) {
-        emit('signin');
+    const res: Response = await $authService.signIn(form);
+    if (res.isOk()) {
+        return emit('signin');
     }
+    
+    setErrors(res.getErrors());
+    console.log(errors);
 };
 
 </script>

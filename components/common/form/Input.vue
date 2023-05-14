@@ -10,7 +10,7 @@
 			:value="modelValue"
             @input.prevent="handleInput($event.target.value.trim())"
 		/>
-		<ValidateError :v="v" />
+		<ValidateError :errors="v.$getErrors()" />
 	</div>
 </template>
 
@@ -50,7 +50,6 @@ const emit = defineEmits(['update:modelValue'])
 const handleInput = async (value: string) => {
     emit("update:modelValue", value);
     props.v.$touch();
-    console.log(await props.v.$validate());
 }
 
 </script>

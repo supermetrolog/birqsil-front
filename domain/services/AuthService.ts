@@ -18,15 +18,15 @@ export default class AuthService extends BaseService {
         await this.setUserByAccessToken(accessToken);
     }
 
-    public async signIn(data: ISignUpData): Promise<boolean> {
+    public async signIn(data: ISignUpData): Promise<Response> {
         const res: Response = await this.api.auth.signin(data);
         if (res.isOk()) {
             const accessToken: IAccessToken = res.data();
             await this.setUserByAccessToken(accessToken)
-            return true;
+            return res;
         }
 
-        return false;
+        return res;
     }
 
     private async setUserByAccessToken(accessToken: IAccessToken): Promise<void> {

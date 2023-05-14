@@ -1,11 +1,11 @@
 <template>
-  <div class="error-container" v-if="v">
+  <div class="error-container" v-if="errors.length">
 	 <div class="messages">
        <p
            class="message"
-           v-for="message in v.$getErrors()"
+           v-for="error in errors"
        >
-         {{message}}
+         {{error}}
        </p>
      </div>
   </div>
@@ -13,12 +13,12 @@
 
 <script setup lang="ts">
   import {PropType} from "@vue/runtime-core";
-  import Validator from "~/domain/interfaces/Validator";
   
   const { v } = defineProps({
-      v: {
-        type: Object as PropType<Validator>,
+      errors: {
+        type: Array as PropType<string[]>,
         required: false,
+        default: () => []
       }
   });
 </script>
