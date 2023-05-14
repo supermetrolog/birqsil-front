@@ -42,7 +42,7 @@ import timeout from "~/validators/timeout";
 import {NuxtApp} from "#app";
 import Route from "~/enums/Route";
 
-const { $i18n, $authService, $userService }: NuxtApp  = useNuxtApp();
+const { $i18n, $authService, $userService, $toast }: NuxtApp  = useNuxtApp();
 
 const form: ISignUpData = reactive({
     email: "",
@@ -58,9 +58,6 @@ const rules = computed(() => {
             required,
             minLength: minLength(8)
         },
-        general: {
-            required,
-        }
     };
 });
 const isEmailTaken = async (value: string): Promise<boolean> => {
@@ -78,10 +75,9 @@ const handleSubmit = async () => {
         return;
     }
     
-    $v.value.email.$errors.push()    ;
-    
-    await $authService.signIn(form);
-    emit('signin');
+    if (await $authService.signIn(form)) {
+        emit('signin');
+    }
 };
 
 </script>
