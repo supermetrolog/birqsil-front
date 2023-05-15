@@ -3,9 +3,9 @@ import UserComponentFactory from "~/domain/factories/UserComponentFactory";
 import User from "~/domain/components/user/User";
 import Route from "~/enums/Route";
 
-export default defineNuxtRouteMiddleware((to: RouteLocation, from: RouteLocation): any => {
+export default defineNuxtRouteMiddleware(async (to: RouteLocation, from: RouteLocation): Promise<any> => {
     const user: User = UserComponentFactory.create();
-
+    await user.refresh();
     const ignoreRoutes: string[] = [
         Route.AUTH_SIGNIN,
         Route.AUTH_SIGNUP

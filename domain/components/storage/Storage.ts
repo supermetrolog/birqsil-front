@@ -1,6 +1,7 @@
 import {integer} from "vscode-languageserver-types";
 import {StorageItem} from "~/composables/storage";
 import {Ref} from "vue";
+import {CookieOptions, CookieRef, useCookie} from "#app";
 
 export default class Storage {
     private readonly vuexStorage: Ref<StorageItem[]>;
@@ -30,16 +31,31 @@ export default class Storage {
             this.setLocalStorage(item);
         }
     }
-    private setVuex(item: StorageItem): void {
+
+    public setCookie<T>(key: string, data: T, expire: integer = 0, options: CookieOptions = {}): CookieRef<T>
+    {
+        return useCookie(key, {
+            default: () => data,
+            expires: new Date(),
+            watch: false,
+            ...options
+        });
+    }
+
+    public getCookie<T>(key: string): CookieRef<T>
+    {
+        return useCookie(key);
+    }
+
+    public setVuex(item: StorageItem): void {
         this.vuexStorage.value.push(item);
     }
-    private setLocalStorage(item: StorageItem): void {
+    public setLocalStorage(item: StorageItem): void {
         const localStorageData = {
             key: item.key,
             data: item.data,
             expire: item.expire
         };
-        console.log(localStorageData);
         this.localStorage.setItem(item.key, JSON.stringify(localStorageData));
     }
 
