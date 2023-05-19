@@ -1,10 +1,8 @@
 import {integer} from "vscode-languageserver-types";
 import {IAccessToken} from "~/domain/components/api/Auth";
-import Storage from "~/domain/components/storage/Storage";
 import axios from "axios";
-import {CookieRef} from "#app";
-
-const STORAGE_KEY: string = 'token';
+import UserTokenStorage from "~/domain/components/user/UserTokenStorage";
+import {Request} from "node-fetch";
 
 export interface IUser {
     id: integer,
@@ -19,13 +17,13 @@ export default class User {
     private _identity: IUser|null = null;
     private _accessToken: IAccessToken;
     private _isGuest: boolean = true;
-    private storage: Storage;
+    private storage: UserTokenStorage;
     private service: IdentityService;
     private alreadyRefresh: boolean = false;
 
-    constructor(storage: Storage, service: IdentityService) {
+    constructor(service: IdentityService) {
         console.log('CREATE  USER');
-        this.storage = storage;
+        this.storage = new UserTokenStorage();
         this.service = service;
     }
 
@@ -40,12 +38,11 @@ export default class User {
     public logout(): void {
         this._isGuest = true;
         this._identity = null;
-        this.storage.remove(STORAGE_KEY);
+        this.storage.remove();
     }
 
     public async login(accessToken: IAccessToken): Promise<void> {
-        const identity:IUser|null = await this.service.findByAccessToken(accessToken.token);
-
+        const identity: IUser|null = await this.service.findByAccessToken(accessToken.token);
         if (!identity) {
             throw new Error('Invalid access token');
         }
@@ -54,7 +51,7 @@ export default class User {
         this._identity = identity;
         this._accessToken = accessToken;
 
-        this.storage.setCookie(STORAGE_KEY, accessToken, accessToken.expire);
+        this.storage.set(accessToken);
 
         this.setUpAxios();
     }
@@ -66,18 +63,26 @@ export default class User {
         return false; // TODO need implements
     }
 
-    public async refresh(): Promise<boolean> {
-        if (this.alreadyRefresh) {
+    public async init(req: Request): Promise<boolean> {
+        this.storage.setRequest(req);
+        if (this.identity) {
             return true;
         }
 
-        const token: CookieRef<IAccessToken> = this.storage.getCookie<IAccessToken>(STORAGE_KEY);
+        return await this.refresh(req);
+    }
 
-        if (!token.value) {
+    public async refresh(req: Request|null = null): Promise<boolean> {
+        console.log('Iden: ', this.identity)
+        const token: IAccessToken | null = this.storage.get();
+        console.log('Iden: ', this.identity)
+        console.log('Token: ')
+        return false;
+        if (!token) {
             return false;
         }
 
-        const identity: IUser|null = await this.service.findByAccessToken(token.value.token);
+        const identity: IUser|null = await this.service.findByAccessToken(token.token);
 
         if (!identity) {
             return false
@@ -85,10 +90,9 @@ export default class User {
 
         this._isGuest = false;
         this._identity = identity;
-        this._accessToken = token.value;
+        this._accessToken = token;
         this.setUpAxios();
 
-        this.alreadyRefresh = true;
         return true;
     }
 

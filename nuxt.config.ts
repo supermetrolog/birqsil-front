@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/i18n'
     ],
-    ssr: false,
+    // ssr: false,
     i18n: {
         lazy: true,
         langDir: "locales",

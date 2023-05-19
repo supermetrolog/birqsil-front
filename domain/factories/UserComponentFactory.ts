@@ -7,7 +7,7 @@ export default class UserComponentFactory {
 
     static create(): User {
         if (!this.user) {
-            this.user = new User(StorageFactory.create(), UserServiceFactory.create());
+            this.user = new User(UserServiceFactory.create());
         }
         return this.user;
     }
