@@ -45,6 +45,6 @@
 }
 </style>
 <script setup lang="ts">
-import Card from "~/components/common/card/Card.vue";
-import Button from "~/components/common/Button.vue";
+import Card from "~/components/UI/card/Card.vue";
+import Button from "~/components/UI/Button.vue";
 </script>

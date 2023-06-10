@@ -15,13 +15,7 @@
 import {PropType} from "@vue/runtime-core";
 import Color from "~/enums/Color";
 
-interface IProps {
-    color: Color;
-    disabled: boolean;
-    large: boolean;
-}
-
-const props: IProps = defineProps({
+defineProps({
 	color: {
         type: String as PropType<Color>,
 		required: true,

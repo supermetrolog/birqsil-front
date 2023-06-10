@@ -35,9 +35,9 @@
 </template>
 
 <script setup lang="ts">
-import Input from "~/components/common/form/Input.vue";
-import Form from "~/components/common/form/Form.vue";
-import Button from "~/components/common/Button.vue";
+import Input from "~/components/UI/form/Input.vue";
+import Form from "~/components/UI/form/Form.vue";
+import Button from "~/components/UI/Button.vue";
 import Color from "~/enums/Color";
 import InputType from "~/enums/InputType";
 import V from "~/domain/adapters/Validate";
