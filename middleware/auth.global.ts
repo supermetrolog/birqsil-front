@@ -2,18 +2,13 @@ import {RouteLocation} from "vue-router";
 import UserComponentFactory from "~/domain/factories/UserComponentFactory";
 import User from "~/domain/components/user/User";
 import Route from "~/enums/Route";
-import {Request} from "node-fetch";
+import {CookieRef} from "#app";
+import {integer} from "vscode-languageserver-types";
 
 export default defineNuxtRouteMiddleware(async (to: RouteLocation, from: RouteLocation): Promise<any> => {
-    console.log('AAAAAAAAAAAAAa', process.client, process.server);
-
     const user: User = UserComponentFactory.create();
-    const res = await useFetch(async (req) => {
-        console.log("REQ", req);
-        await user.init(req)
-    });
-    
-    console.log(user.isGuest, user.identity?.email);
+    await user.init()
+
     const ignoreRoutes: string[] = [
         Route.AUTH_SIGNIN,
         Route.AUTH_SIGNUP

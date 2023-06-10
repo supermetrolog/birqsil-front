@@ -19,10 +19,8 @@ export default class User {
     private _isGuest: boolean = true;
     private storage: UserTokenStorage;
     private service: IdentityService;
-    private alreadyRefresh: boolean = false;
 
     constructor(service: IdentityService) {
-        console.log('CREATE  USER');
         this.storage = new UserTokenStorage();
         this.service = service;
     }
@@ -63,21 +61,17 @@ export default class User {
         return false; // TODO need implements
     }
 
-    public async init(req: Request): Promise<boolean> {
-        this.storage.setRequest(req);
+    public async init(): Promise<boolean> {
         if (this.identity) {
             return true;
         }
 
-        return await this.refresh(req);
+        return await this.refresh();
     }
 
-    public async refresh(req: Request|null = null): Promise<boolean> {
-        console.log('Iden: ', this.identity)
+    public async refresh(): Promise<boolean> {
         const token: IAccessToken | null = this.storage.get();
-        console.log('Iden: ', this.identity)
-        console.log('Token: ')
-        return false;
+
         if (!token) {
             return false;
         }
