@@ -2,5 +2,7 @@
   "email": "Email",
   "password": "Password",
   "password repeat": "Password repeat",
+  "Sign In": "Sign In",
+  "Logout": "Logout",
   "Email already used": "Email already used"
 }

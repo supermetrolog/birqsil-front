@@ -62,7 +62,7 @@ export default class User {
     }
 
     public async init(): Promise<boolean> {
-        if (this.identity) {
+        if (this.identity && process.client) {
             return true;
         }
 
@@ -73,6 +73,7 @@ export default class User {
         const token: IAccessToken | null = this.storage.get();
 
         if (!token) {
+            this.logout();
             return false;
         }
 

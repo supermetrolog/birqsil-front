@@ -2,8 +2,6 @@ import {RouteLocation} from "vue-router";
 import UserComponentFactory from "~/domain/factories/UserComponentFactory";
 import User from "~/domain/components/user/User";
 import Route from "~/enums/Route";
-import {CookieRef} from "#app";
-import {integer} from "vscode-languageserver-types";
 
 export default defineNuxtRouteMiddleware(async (to: RouteLocation, from: RouteLocation): Promise<any> => {
     const user: User = UserComponentFactory.create();

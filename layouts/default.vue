@@ -1,5 +1,20 @@
 <template>
 	<div class="layout">
+	  <div class="container">
+		<Header />
 		<slot />
+	  </div>
 	</div>
 </template>
+<script setup lang="ts">
+
+
+import Header from "~/components/layout/default/Header.vue";
+</script>
+
+<style scoped lang="scss">
+.container {
+  width: 60%;
+  margin: 0 auto;
+}
+</style>
