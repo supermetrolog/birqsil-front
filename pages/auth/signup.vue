@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import Signup from "~/components/auth/signup/Signup.vue";
+import Signup from "~/components/domain/views/auth/signup/Signup.vue";
 import {NuxtApp} from "#app";
 
 const { $router }: NuxtApp = useNuxtApp();

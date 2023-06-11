@@ -35,6 +35,6 @@ export default class AuthService extends BaseService {
             throw new Error('User not found');
         }
 
-        this.user.login(accessToken);
+        await this.user.login(accessToken);
     }
 }

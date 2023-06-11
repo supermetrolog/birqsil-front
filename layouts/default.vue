@@ -9,7 +9,7 @@
 <script setup lang="ts">
 
 
-import Header from "~/components/layout/default/Header.vue";
+import Header from "~/components/domain/base/layout/default/Header.vue";
 </script>
 
 <style scoped lang="scss">
