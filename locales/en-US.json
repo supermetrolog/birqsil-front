@@ -4,5 +4,10 @@
   "password repeat": "Password repeat",
   "Sign In": "Sign In",
   "Logout": "Logout",
-  "Email already used": "Email already used"
+  "Email already used": "Email already used",
+  "Name": "Name",
+  "Address": "Address",
+  "Status": "Status",
+  "Created At": "Created At",
+  "Restaurant list": "Restaurant list"
 }
