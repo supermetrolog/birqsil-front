@@ -2,23 +2,11 @@
 
 import RestaurantTable from "~/components/domain/base/restaurant/list/RestaurantTable.vue";
 import Restaurant from "~/domain/entities/Restaurant";
+import {NuxtApp} from "#app";
 
-const restaurants = [];
-restaurants.push(new Restaurant({
-  id: 12,
-  name: 'Birqsil',
-  address: 'Moscow, Lenina street',
-  status: 10,
-  created_at: '2023-06-11 22:12:13'
-}));
+const {$restaurantService}: NuxtApp = useNuxtApp();
+const restaurants: Restaurant[] = await $restaurantService.getAllRestaurant();
 
-restaurants.push(new Restaurant({
-  id: 22,
-  name: 'Selfie',
-  address: 'Saint-Petersburg , Lenina street',
-  status: 10,
-  created_at: '2023-05-2 22:12:13'
-}));
 </script>
 
 <template>
