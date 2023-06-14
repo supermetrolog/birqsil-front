@@ -15,26 +15,17 @@ export default class AuthService extends BaseService {
     public async signUp(data: ISignUpData): Promise<void> {
         const res: Response = await this.api.auth.signup(data);
         const accessToken: IAccessToken = res.data();
-        await this.setUserByAccessToken(accessToken);
+        await this.user.login(accessToken);
     }
 
     public async signIn(data: ISignUpData): Promise<Response> {
         const res: Response = await this.api.auth.signin(data);
         if (res.isOk()) {
             const accessToken: IAccessToken = res.data();
-            await this.setUserByAccessToken(accessToken)
+            await this.user.login(accessToken);
             return res;
         }
 
         return res;
-    }
-
-    private async setUserByAccessToken(accessToken: IAccessToken): Promise<void> {
-        const user: IUser|null = await this.api.user.findByAccessToken(accessToken.token);
-        if (!user) {
-            throw new Error('User not found');
-        }
-
-        await this.user.login(accessToken);
     }
 }

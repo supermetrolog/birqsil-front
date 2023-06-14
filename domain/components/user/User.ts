@@ -37,11 +37,14 @@ export default class User {
         this._isGuest = true;
         this._identity = null;
         this.storage.remove();
+        this.clearAxios();
     }
 
     public async login(accessToken: IAccessToken): Promise<void> {
+        this.setUpAxios(accessToken.token);
         const identity: IUser|null = await this.service.findByAccessToken(accessToken.token);
         if (!identity) {
+            this.logout();
             throw new Error('Invalid access token');
         }
 
@@ -50,8 +53,6 @@ export default class User {
         this._accessToken = accessToken;
 
         this.storage.set(accessToken);
-
-        this.setUpAxios();
     }
     public can(permission: string): boolean {
         return false; // TODO: need implements
@@ -77,23 +78,32 @@ export default class User {
             return false;
         }
 
+        this.setUpAxios(token.token);
+
         const identity: IUser|null = await this.service.findByAccessToken(token.token);
 
         if (!identity) {
+            this.logout();
             return false
         }
 
         this._isGuest = false;
         this._identity = identity;
         this._accessToken = token;
-        this.setUpAxios();
+        this.setUpAxios(this._accessToken.token);
 
         return true;
     }
 
-    private setUpAxios(): void {
+    private setUpAxios(token: string): void {
         if (axios.defaults.headers.common) {
-            axios.defaults.headers.common["Authorization"] = 'Bearer ' + this._accessToken.token;
+            axios.defaults.headers.common["Authorization"] = 'Bearer ' + token;
+        }
+    }
+
+    private clearAxios(): void {
+        if (axios.defaults.headers.common) {
+            delete axios.defaults.headers.common["Authorization"];
         }
     }
 }

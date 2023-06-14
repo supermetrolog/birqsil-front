@@ -1,6 +1,7 @@
 import BaseApi, {Response} from "~/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 import {AxiosResponse} from "axios";
+import {routerKey} from "vue-router";
 
 export interface IEmailExistsResponse {
     exists: boolean
@@ -8,35 +9,36 @@ export interface IEmailExistsResponse {
 
 export interface IUser {
     id: integer,
-    email: string
+    email: string,
+    status: integer,
+    created_at: string,
+    updated_at: string|null
 }
 
 export default class User extends BaseApi {
-    public async checkEmailExists(email: string): Promise<Response>
+    public async checkEmailExists(email: string): Promise<boolean>
     {
-        return await this.get('user/check-email-exists',{
+        const response: Response = await this.get('user/check-email-exists',{
             params: {
                 email
             }
         });
+
+        if (!response.isOk()) {
+            throw new Error('Check email exists error');
+        }
+
+        const data: IEmailExistsResponse = response.data();
+        return data.exists;
     }
 
     public async findByAccessToken(token: string): Promise<IUser|null> {
-        return {
-            email: "fuck@suck.ru",
-            id: 12
-        };
+        const response: Response = await this.get('user/find-by-token/' + token);
 
-        // const users: IUser[] = await this.get('user/search', {
-        //     params: {
-        //         access_token: token
-        //     }
-        // });
-        //
-        // if (users.length) {
-        //     return users[0];
-        // }
-        //
-        // return null;
+        if (response.isOk()) {
+            return response.data();
+        }
+
+        return null;
     }
 }
