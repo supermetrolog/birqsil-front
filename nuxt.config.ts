@@ -16,7 +16,11 @@ export default defineNuxtConfig({
     css: [
         '@/assets/styles/null.scss',
         '@/assets/styles/main.scss',
+        'vuetify/styles/main.sass',
     ],
+    build: {
+        transpile: ["vuetify"]
+    },
     vite: {
         css: {
             preprocessorOptions: {
