@@ -9,7 +9,4 @@
 </template>
 
 <style scoped lang="scss">
-	.td {
-	  padding: 1rem;
-	}
 </style>

@@ -9,8 +9,4 @@
 </template>
 
 <style scoped lang="scss">
-	.th {
-	  padding: 1rem;
-	  text-align: left;
-	}
 </style>
