@@ -17,6 +17,7 @@ export default defineNuxtConfig({
         '@/assets/styles/null.scss',
         '@/assets/styles/main.scss',
         'vuetify/styles/main.sass',
+        '@mdi/font/css/materialdesignicons.css'
     ],
     build: {
         transpile: ["vuetify"]

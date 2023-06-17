@@ -4,7 +4,7 @@
 
 <template>
   <tr class="tr">
-	<slot/>
+	<slot />
   </tr>
 </template>
 
