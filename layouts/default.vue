@@ -10,23 +10,25 @@
   };
 </script>
 <template>
-	<div class="layout">
-	  <div class="container">
-		<v-app>
-		  <v-app-bar :elevation="2">
-			<v-app-bar-title>
-			  BIRQSIL
-			</v-app-bar-title>
-			<template v-slot:append>
-			  <v-btn icon="mdi-heart"></v-btn>
-			  
-			  <v-btn icon="mdi-magnify"></v-btn>
-			  
-			  <v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
-			</template>
-		  </v-app-bar>
-		  <slot />
-		</v-app>
-	  </div>
-	</div>
+  <v-app class="app">
+	<v-app-bar :elevation="2">
+	  <v-app-bar-title>
+		BIRQSIL
+	  </v-app-bar-title>
+	  <template v-slot:append>
+		<v-btn icon="mdi-heart"></v-btn>
+		
+		<v-btn icon="mdi-magnify"></v-btn>
+		
+		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
+	  </template>
+	</v-app-bar>
+	<slot />
+  </v-app>
 </template>
+
+<style scoped lang="scss">
+	.app {
+	  padding-top: 80px;
+	}
+</style>
