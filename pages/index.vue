@@ -14,6 +14,9 @@ useSeoMeta({
 	<v-card-title class="text-h6 font-weight-regular justify-space-between">
 	  <span>{{ $t('Restaurant list') }}</span>
 	</v-card-title>
+	<v-btn to="restaurant/create">
+	  {{ $t('Create restaurant') }}
+	</v-btn>
 	<RestaurantTableView />
   </v-card>
 </template>

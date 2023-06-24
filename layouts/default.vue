@@ -23,7 +23,11 @@
 		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
 	  </template>
 	</v-app-bar>
-	<slot />
+	<v-container>
+	  <v-row>
+		<slot />
+	  </v-row>
+	</v-container>
   </v-app>
 </template>
 
