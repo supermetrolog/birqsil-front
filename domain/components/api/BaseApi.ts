@@ -46,7 +46,7 @@ export default class BaseApi {
         return this._axios;
     }
 
-    public async get(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
+    protected async get(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
         const res: AxiosResponse = await this.axios.get(path, {
             ...options,
             validateStatus: function (status) {
@@ -57,7 +57,7 @@ export default class BaseApi {
         return new Response(res);
     }
 
-    public async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<Response> {
+    protected async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<Response> {
         const res: AxiosResponse = await this.axios.post(path, data, {
             ...options,
             validateStatus: function (status) {
@@ -68,7 +68,7 @@ export default class BaseApi {
         return new Response(res);
     }
 
-    public async delete(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
+    protected async delete(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
         const res: AxiosResponse = await this.axios.delete(path, {
             ...options,
             validateStatus: function (status) {

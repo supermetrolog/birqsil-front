@@ -20,7 +20,7 @@ export default class RestaurantService extends BaseService {
 
     public async delete(restaurant: Restaurant): Promise<boolean>
     {
-        const res: Response = await this.api.restaurant.create(restaurant);
+        const res: Response = await this.api.restaurant.remove(restaurant.id);
         if (res.isOk()) {
             return true;
         }

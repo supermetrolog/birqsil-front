@@ -4,9 +4,10 @@ import RestaurantTable from "~/components/domain/base/restaurant/list/Restaurant
 import Restaurant from "~/domain/entities/Restaurant";
 import {NuxtApp} from "#app";
 import Modal from "~/components/UI/Modal.vue";
+import {Ref} from "vue";
 
 const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();
-const restaurants: Restaurant[] = await $restaurantService.getAllRestaurant();
+const restaurants: Ref<Restaurant[]> = ref(await $restaurantService.getAllRestaurant());
 
 let modal: Modal = ref(null);
 const deleteBtnClickHandler = async (restaurant: Restaurant) => {
@@ -14,8 +15,12 @@ const deleteBtnClickHandler = async (restaurant: Restaurant) => {
 	message: $i18n.t("You really want delete restaurant with name:") + " " + restaurant.name + "?",
   })
   
-  if (isConfirmed) {
-	$restaurantService.delete(restaurant);
+  if (!isConfirmed) {
+	return;
+  }
+  
+  if (await $restaurantService.delete(restaurant)) {
+	restaurants.value = restaurants.value.filter((item: Restaurant) => item.id !== restaurant.id);
   }
 }
 
