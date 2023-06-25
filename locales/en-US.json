@@ -10,5 +10,9 @@
   "Status": "Status",
   "Created At": "Created At",
   "Restaurant list": "Restaurant list",
-  "Create restaurant": "Create restaurant"
+  "Create restaurant": "Create restaurant",
+  "Actions": "Actions",
+  "You really want delete restaurant with name:": "You really want delete restaurant with name:",
+  "Cancel": "Cancel",
+  "Ok": "Ok"
 }

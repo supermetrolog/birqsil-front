@@ -15,6 +15,9 @@ const {restaurant}: IProps = defineProps({
 	required: true
   }
 });
+
+const emit = defineEmits(['clickDelete', 'clickEdit'])
+
 </script>
 
 <template>
@@ -30,6 +33,10 @@ const {restaurant}: IProps = defineProps({
 	</Td>
 	<Td>
 	  {{ restaurant.created_at }}
+	</Td>
+	<Td>
+	  <v-btn icon="mdi mdi-pencil-outline" density="compact"></v-btn>
+	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click="emit('clickDelete', restaurant)"></v-btn>
 	</Td>
   </Tr>
 </template>

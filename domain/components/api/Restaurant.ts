@@ -17,4 +17,8 @@ export default class Restaurant extends BaseApi {
     public async create(data: IRestaurantData): Promise<Response>{
         return await this.post('restaurant', data);
     }
+
+    public async delete(id: integer): Promise<Response>{
+        return await this.delete('restaurant');
+    }
 }

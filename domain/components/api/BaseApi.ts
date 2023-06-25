@@ -67,4 +67,15 @@ export default class BaseApi {
 
         return new Response(res);
     }
+
+    public async delete(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
+        const res: AxiosResponse = await this.axios.delete(path, {
+            ...options,
+            validateStatus: function (status) {
+                return status < 500; // Resolve only if the status code is less than 500
+            }
+        });
+
+        return new Response(res);
+    }
 }
