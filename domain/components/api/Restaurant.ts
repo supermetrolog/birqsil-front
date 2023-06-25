@@ -14,8 +14,18 @@ export default class Restaurant extends BaseApi {
         return response.data();
     }
 
+    public async getOne(id: integer): Promise<RestaurantEntity> {
+        const response: Response = await this.get('restaurant/' + id);
+        return response.data();
+    }
+
+
     public async create(data: IRestaurantData): Promise<Response>{
         return await this.post('restaurant', data);
+    }
+
+    public async update(id: integer, data: IRestaurantData): Promise<Response>{
+        return await this.put('restaurant/' + id, data);
     }
 
     public async remove(id: integer): Promise<Response>{

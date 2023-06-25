@@ -5,26 +5,40 @@ import Scenario from "~/enums/Scenario";
 import required from "~/validators/required";
 import {IRestaurantData} from "~/domain/components/api/Restaurant";
 import Restaurant from "~/domain/entities/Restaurant";
+import restaurant from "~/domain/entities/Restaurant";
 
 const { $i18n, $restaurantService }: NuxtApp  = useNuxtApp();
 
 interface IProps {
   scenario: Scenario,
+  updateRestaurant: Restaurant|null
 }
 
-const {scenario}: IProps = defineProps({
+const {scenario, updateRestaurant}: IProps = defineProps({
   scenario: {
 	type: String as PropType<Scenario>,
 	required: true
+  },
+  updateRestaurant: {
+	type: Object as PropType<Restaurant|null>,
   }
 });
 
+if (scenario === Scenario.UPDATE && !updateRestaurant) {
+  throw new Error('Restaurant cannot be null when scenario is update')
+}
 
 const form: IRestaurantData = reactive({
   name: "",
   address: "",
   status: null,
 });
+
+if (scenario === Scenario.UPDATE) {
+  form.name = updateRestaurant.name;
+  form.address = updateRestaurant.address;
+  form.status = updateRestaurant.status;
+}
 
 const rules = {
 	name: [
@@ -51,6 +65,16 @@ const handleSubmit = async (event) => {
 	emit('created', restaurant);
   }
   
+  if (scenario == Scenario.UPDATE) {
+	const restaurant: Restaurant | null = await $restaurantService.update(updateRestaurant.id, form);
+	
+	if (!restaurant) {
+	  throw new Error('Create restaurant error');
+	}
+	
+	emit('updated', restaurant);
+  }
+  
 };
 
 </script>
@@ -62,6 +86,10 @@ const handleSubmit = async (event) => {
 		  v-model="form.name"
 		  :label="$t('Name')"
 		  :rules="rules.name"
+	  ></v-text-field>
+	  <v-text-field
+		  v-model="form.address"
+		  :label="$t('Address')"
 	  ></v-text-field>
 	  <v-btn type="submit" block class="mt-2">Submit</v-btn>
 	</v-form>

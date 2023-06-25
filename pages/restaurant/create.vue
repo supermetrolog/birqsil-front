@@ -14,7 +14,3 @@ const createdHandler = () => {
 <template>
 	<RestaurantForm :scenario="Scenario.CREATE" @created="createdHandler"/>
 </template>
-
-<style scoped lang="scss">
-
-</style>
