@@ -16,12 +16,12 @@ const {restaurant}: IProps = defineProps({
   }
 });
 
-const emit = defineEmits(['clickDelete', 'clickUpdate'])
+const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 
 </script>
 
 <template>
-  <Tr>
+  <Tr clickable @click="emit('clickView', restaurant)">
 	<Td>
 	  {{restaurant.name}}
 	</Td>
@@ -35,8 +35,8 @@ const emit = defineEmits(['clickDelete', 'clickUpdate'])
 	  {{ restaurant.created_at }}
 	</Td>
 	<Td>
-	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click="emit('clickUpdate', restaurant)"></v-btn>
-	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click="emit('clickDelete', restaurant)"></v-btn>
+	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', restaurant)"></v-btn>
+	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', restaurant)"></v-btn>
 	</Td>
   </Tr>
 </template>

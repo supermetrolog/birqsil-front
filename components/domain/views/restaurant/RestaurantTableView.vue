@@ -6,7 +6,7 @@ import {NuxtApp} from "#app";
 import Modal from "~/components/UI/Modal.vue";
 import {Ref} from "vue";
 
-const { $restaurantService, $i18n, $router }: NuxtApp = useNuxtApp();
+const {$restaurantService, $i18n, $router}: NuxtApp = useNuxtApp();
 const restaurants: Ref<Restaurant[]> = ref(await $restaurantService.getAll());
 
 let modal: Modal = ref(null);
@@ -28,12 +28,21 @@ const updateBtnClickHandler = (restaurant: Restaurant) => {
   $router.push('restaurant/update/' + restaurant.id);
 }
 
+const viewBtnClickHandler = (restaurant: Restaurant) => {
+  $router.push('restaurant/' + restaurant.id);
+}
+
 </script>
 
 <template>
   <div></div>
-  <Modal ref="modal" />
-  <RestaurantTable :restaurants="restaurants" @clickDelete="deleteBtnClickHandler" @clickUpdate="updateBtnClickHandler" />
+  <Modal ref="modal"/>
+  <RestaurantTable
+	  :restaurants="restaurants"
+	  @clickDelete="deleteBtnClickHandler"
+	  @clickUpdate="updateBtnClickHandler"
+	  @clickView="viewBtnClickHandler"
+  />
 </template>
 
 <style scoped lang="scss">

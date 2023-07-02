@@ -9,7 +9,7 @@ import {PropType} from "@vue/runtime-core";
 interface IProps {
   restaurants: Restaurant[],
 }
-const emit = defineEmits(['clickDelete', 'clickUpdate'])
+const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 
 const {restaurants}: IProps = defineProps({
   restaurants: {
@@ -38,6 +38,7 @@ const {restaurants}: IProps = defineProps({
 		  :restaurant="restaurant"
 		  @clickDelete="args => emit('clickDelete', args)"
 		  @clickUpdate="args => emit('clickUpdate', args)"
+		  @clickView="args => emit('clickView', args)"
 	  />
 	</tbody>
   </v-table>
