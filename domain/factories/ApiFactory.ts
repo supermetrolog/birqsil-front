@@ -5,7 +5,8 @@ export default class ApiFactory {
 
     static create(): API {
         if (!this.api) {
-            this.api = new API('http://api.birqsil.ru/v1');
+            const config = useRuntimeConfig();
+            this.api = new API(config.public.apiBaseUrl);
         }
         return this.api;
     }

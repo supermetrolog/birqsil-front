@@ -2,12 +2,20 @@
 export default defineNuxtConfig({
     app: {
         baseURL: '',
-        title: "nigga",
+        title: "BIRQSIL",
         theme: {
             dark: true,
             colors: {
                 primary: '#ff0000'
             }
+        },
+    },
+    runtimeConfig: {
+        // The private keys which are only available within server-side
+        apiSecret: "123",
+        // Keys within public, will be also exposed to the client-side
+        public: {
+            apiBaseUrl: process.env.API_BASE_URL || "",
         }
     },
     typescript: {
