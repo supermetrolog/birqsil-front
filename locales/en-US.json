@@ -14,5 +14,9 @@
   "Actions": "Actions",
   "You really want delete restaurant with name:": "You really want delete restaurant with name:",
   "Cancel": "Cancel",
-  "Ok": "Ok"
+  "Ok": "Ok",
+  "Send your message to email address:": "Send your message to email address:",
+  "Support": "Support",
+  "Restaurants": "Restaurants",
+  "Menu": "Menu"
 }

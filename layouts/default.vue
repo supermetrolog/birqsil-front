@@ -1,38 +1,69 @@
 <script setup lang="ts">
-  import {NuxtApp} from "#app";
-  import Route from "~/enums/Route";
-  
-  const {$router, $user}: NuxtApp = useNuxtApp();
-  
-  const signOutHandler = () => {
-	$user.logout();
-	$router.push(Route.AUTH_SIGNIN);
-  };
+import {NuxtApp, useRoute} from "#app";
+import Route from "~/enums/Route";
+import {RouteLocationNormalized} from "vue-router";
+
+const {$router, $user, $i18n}: NuxtApp = useNuxtApp();
+interface Link {
+  title: string,
+  link: string,
+  exact: boolean
+}
+const links: Link[] = [
+  {
+	title: $i18n.t('Restaurants'),
+	link: "/",
+	exact: true,
+  },
+  {
+	title: $i18n.t('Menu'),
+	link: "/menu",
+	exact: false,
+  },
+  {
+	title: $i18n.t('Support'),
+	link: "/support",
+	exact: false,
+  }
+];
+const signOutHandler = () => {
+  $user.logout();
+  $router.push(Route.AUTH_SIGNIN);
+};
 </script>
 <template>
-  <v-app class="app">
+  <v-app>
 	<v-app-bar :elevation="2">
 	  <v-app-bar-title>
 		BIRQSIL
 	  </v-app-bar-title>
 	  <template v-slot:append>
-		<v-btn icon="mdi-heart"></v-btn>
-		
-		<v-btn icon="mdi-magnify"></v-btn>
-		
 		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
 	  </template>
 	</v-app-bar>
-	<v-container>
-	  <v-row>
+	<v-navigation-drawer
+		:elevation="2"
+		:permanent="true"
+		:width="200"
+	>
+	  <v-list density="compact">
+		<v-list-item
+			v-for="item in links"
+			:key="item.link"
+			:title="item.title"
+			:to="item.link"
+			:exact="item.exact"
+			density="compact"
+		/>
+	  </v-list>
+	</v-navigation-drawer>
+	<v-main>
+	  <v-container fluid>
 		<slot />
-	  </v-row>
-	</v-container>
+	  </v-container>
+	</v-main>
   </v-app>
 </template>
 
 <style scoped lang="scss">
-	.app {
-	  padding-top: 80px;
-	}
 </style>
