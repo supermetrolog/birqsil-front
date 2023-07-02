@@ -80,7 +80,6 @@ const handleSubmit = async (event) => {
 </script>
 
 <template>
-  <v-sheet width="300" class="mx-auto">
 	<v-form @submit.prevent="handleSubmit">
 	  <v-text-field
 		  v-model="form.name"
@@ -93,7 +92,6 @@ const handleSubmit = async (event) => {
 	  ></v-text-field>
 	  <v-btn type="submit" block class="mt-2">Submit</v-btn>
 	</v-form>
-  </v-sheet>
 </template>
 
 <style scoped lang="scss">

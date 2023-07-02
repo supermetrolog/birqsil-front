@@ -57,7 +57,7 @@ const signOutHandler = () => {
 		/>
 	  </v-list>
 	</v-navigation-drawer>
-	<v-main>
+	<v-main class="content">
 	  <v-container fluid>
 		<slot />
 	  </v-container>
@@ -66,4 +66,7 @@ const signOutHandler = () => {
 </template>
 
 <style scoped lang="scss">
+.content {
+  background-color: $color_light;
+}
 </style>

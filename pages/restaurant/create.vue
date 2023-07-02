@@ -12,5 +12,12 @@ const createdHandler = () => {
 </script>
 
 <template>
-	<RestaurantForm :scenario="Scenario.CREATE" @created="createdHandler"/>
+  	<v-card>
+	  <v-card-title>
+		{{$t('Create restaurant')}}
+	  </v-card-title>
+	  <v-card-text>
+		<RestaurantForm :scenario="Scenario.CREATE" @created="createdHandler"/>
+	  </v-card-text>
+	</v-card>
 </template>
