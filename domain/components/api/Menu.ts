@@ -6,7 +6,8 @@ export interface IMenuItemData {
     restaurant_id: integer,
     title: string,
     description: string,
-    status: integer
+    status: integer,
+    files: FileList
 }
 
 export default class Menu extends BaseApi {
@@ -36,5 +37,11 @@ export default class Menu extends BaseApi {
 
     public async remove(id: integer): Promise<Response>{
         return await this.delete('menu/' + id);
+    }
+
+    public async setImage(id: integer, file: File): Promise<Response> {
+        const fd: FormData = new FormData();
+        fd.append('image', file);
+        return await this.post('menu/' + id + '/upload-file', fd);
     }
 }

@@ -38,4 +38,13 @@ export default class MenuService extends BaseService {
     {
         return await this.api.menu.getOne(id);
     }
+
+    public async setImage(id: integer, files: FileList): Promise<boolean>
+    {
+        if (files.length) {
+            return (await this.api.menu.setImage(id, files[0])).isOk();
+        }
+
+        return false;
+    }
 }

@@ -37,6 +37,7 @@ const form: IMenuItemData = reactive({
   title: "",
   description: "",
   status: null,
+  files: null
 });
 
 if (scenario === Scenario.CREATE) {
@@ -52,10 +53,10 @@ if (scenario === Scenario.UPDATE && updateMenuItem) {
 
 const rules = {
 	title: [
-		required,
+	  required,
 	],
   	status: [
-		  required,
+	  required,
 	]
 }
 
@@ -75,6 +76,12 @@ const handleSubmit = async (event) => {
 	  throw new Error('Create menu item error');
 	}
 	
+	if (form.files) {
+	  if (!await $menuService.setImage(menuItem.id, form.files)) {
+		throw new Error('Set menu item image error');
+	  }
+	}
+	
 	emit('created', menuItem);
   }
   
@@ -82,12 +89,17 @@ const handleSubmit = async (event) => {
 	const menuItem: MenuItem | null = await $menuService.update(updateMenuItem.id, form);
 	
 	if (!menuItem) {
-	  throw new Error('Create menu item error');
+	  throw new Error('Update menu item error');
+	}
+	
+	if (form.files) {
+	  if (!await $menuService.setImage(menuItem.id, form.files)) {
+		throw new Error('Set menu item image error');
+	  }
 	}
 	
 	emit('updated', menuItem);
   }
-  
 };
 
 </script>
@@ -99,12 +111,12 @@ const handleSubmit = async (event) => {
 		  v-model="form.title"
 		  :label="$t('Title')"
 		  :rules="rules.title"
-	  ></v-text-field>
+	  />
 	  <v-text-field
 		  density="compact"
 		  v-model="form.description"
 		  :label="$t('Description')"
-	  ></v-text-field>
+	  />
 	  <v-select
 		  v-model="form.status"
 		  :label="$t('Status')"
@@ -117,8 +129,15 @@ const handleSubmit = async (event) => {
 		  item-title="label"
 		  item-value="value"
 		
-	  >
-	  </v-select>
+	  />
+	  <v-file-input
+		  v-model="form.files"
+		  density="compact"
+		  accept="image/*"
+		  clearable
+		  :label="$t('Picture')"
+	  />
+	  
 	  <v-btn type="submit" block class="mt-2">Submit</v-btn>
 	</v-form>
 </template>
