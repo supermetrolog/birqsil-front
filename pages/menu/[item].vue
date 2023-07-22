@@ -7,7 +7,7 @@ import MenuItem from "~/domain/entities/MenuItem";
 const { $menuService }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();
 const menuItemId: integer = +route.params.item
-const menuItem: MenuItem = await $menuService.getOne(menuItemId);
+const menuItem: MenuItem = await $menuService.getOne(menuItemId, ['image']);
 </script>
 
 <template>
@@ -23,6 +23,9 @@ const menuItem: MenuItem = await $menuService.getOne(menuItemId);
 	  <div>
 		<v-card-text>
 		  {{menuItem.status}}
+		</v-card-text>
+		<v-card-text>
+		  {{menuItem.file_id}}
 		</v-card-text>
 	  </div>
 	</div>

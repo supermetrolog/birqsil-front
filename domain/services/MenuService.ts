@@ -34,9 +34,9 @@ export default class MenuService extends BaseService {
         return (await this.api.menu.remove(menuItem.id)).isOk();
     }
 
-    public async getOne(id: integer): Promise<MenuItem>
+    public async getOne(id: integer, expand: string[] = []): Promise<MenuItem>
     {
-        return await this.api.menu.getOne(id);
+        return await this.api.menu.getOne(id, expand);
     }
 
     public async setImage(id: integer, files: FileList): Promise<boolean>

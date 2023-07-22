@@ -1,7 +1,7 @@
 class BaseEntity {
-    constructor(config: Object = {}) {
+    constructor(config: Record<string, any> = {}) {
         for (const configKey in config) {
-            this[configKey] = config[configKey];
+            this[configKey as keyof this] = config[configKey];
         }
     }
 }

@@ -23,7 +23,8 @@ export default class Menu extends BaseApi {
         }
 
         const response: Response = await this.get('menu/item/' + id, queryParams);
-        return response.data();
+
+        return new MenuItemEntity(response.data());
     }
 
 
