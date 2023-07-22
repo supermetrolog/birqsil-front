@@ -21,7 +21,7 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 </script>
 
 <template>
-  <Tr clickable @click="emit('clickView', restaurant)">
+  <Tr clickable @click="emit('clickView', item)">
 	<Td>
 	  {{item.title}}
 	</Td>

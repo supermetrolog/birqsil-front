@@ -42,11 +42,11 @@ const deleteBtnClickHandler = async (item: MenuItem) => {
 }
 
 const updateBtnClickHandler = (item: MenuItem) => {
-  $router.push('menu/update/' + item.id);
+  $router.push('/menu/update/' + item.id);
 }
 
 const viewBtnClickHandler = (item: MenuItem) => {
-  $router.push('menu/' + item.id);
+  $router.push('/menu/' + item.id);
 }
 
 </script>

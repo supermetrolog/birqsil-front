@@ -15,8 +15,13 @@ export default class Menu extends BaseApi {
         return response.data();
     }
 
-    public async getOne(id: integer): Promise<MenuItemEntity> {
-        const response: Response = await this.get('menu/' + id);
+    public async getOne(id: integer, expand: string[] = []): Promise<MenuItemEntity> {
+        const queryParams: {expand: string} = {};
+        if (expand.length) {
+            queryParams.expand = expand.join(',');
+        }
+
+        const response: Response = await this.get('menu/item/' + id, queryParams);
         return response.data();
     }
 

@@ -5,6 +5,7 @@ class MenuItem extends BaseEntity {
     public id: integer;
     public title: string;
     public description: string;
+    public restaurant_id: integer;
     public status: integer;
     public created_at: string;
     public updated_at: string;

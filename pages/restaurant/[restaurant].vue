@@ -43,7 +43,7 @@ import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 			class="ms-2"
 			variant="outlined"
 			size="small"
-			to="/menu/create"
+			:to="'/menu/create/' + restaurantId"
 		>
 		  {{$t('Create menu item')}}
 		</v-btn>

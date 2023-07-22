@@ -34,7 +34,7 @@ const form: IRestaurantData = reactive({
   status: null,
 });
 
-if (scenario === Scenario.UPDATE) {
+if (scenario === Scenario.UPDATE && updateRestaurant) {
   form.name = updateRestaurant.name;
   form.address = updateRestaurant.address;
   form.status = updateRestaurant.status;

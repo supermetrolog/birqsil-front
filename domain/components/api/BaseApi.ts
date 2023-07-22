@@ -46,7 +46,9 @@ export default class BaseApi {
         return this._axios;
     }
 
-    protected async get(path: string, options: AxiosRequestConfig = {}): Promise<Response> {
+    protected async get(path: string, queryParams: Object = {}, options: AxiosRequestConfig = {}): Promise<Response> {
+        path += queryParams ? '?' + new URLSearchParams(queryParams).toString() : '';
+
         const res: AxiosResponse = await this.axios.get(path, {
             ...options,
             validateStatus: function (status) {
