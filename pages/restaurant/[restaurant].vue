@@ -2,7 +2,7 @@
 import {NuxtApp, useRoute} from "#app";
 	import {integer} from "vscode-languageserver-types";
 import {RouteLocationNormalized} from "vue-router";
-import RestaurantTableView from "~/components/domain/views/restaurant/RestaurantTableView.vue";
+import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 	
 	const { $restaurantService }: NuxtApp = useNuxtApp();
 
@@ -51,7 +51,7 @@ import RestaurantTableView from "~/components/domain/views/restaurant/Restaurant
 	</div>
 	
 	<v-card-text>
-	  <RestaurantTableView />
+	  <MenuTableView :restaurantId="restaurant.id" />
 	</v-card-text>
   </v-card>
   
