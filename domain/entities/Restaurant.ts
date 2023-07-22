@@ -8,5 +8,6 @@ class Restaurant extends BaseEntity {
     public address: string;
     public status: integer;
     public created_at: string;
+    public qrcodeLink: string;
 }
 export default Restaurant;
