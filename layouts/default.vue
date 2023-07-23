@@ -43,7 +43,6 @@ const signOutHandler = () => {
 	</v-app-bar>
 	<v-navigation-drawer
 		:elevation="2"
-		:permanent="true"
 		:width="200"
 	>
 	  <v-list density="compact">
