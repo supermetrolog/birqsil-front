@@ -31,4 +31,14 @@ export default class Restaurant extends BaseApi {
     public async remove(id: integer): Promise<Response>{
         return await this.delete('restaurant/' + id);
     }
+
+    public async publish(id: integer): Promise<Response>
+    {
+        return await this.post('restaurant/' + id + '/publish');
+    }
+
+    public async hide(id: integer): Promise<Response>
+    {
+        return await this.post('restaurant/' + id + '/hide');
+    }
 }

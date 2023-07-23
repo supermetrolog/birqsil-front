@@ -59,7 +59,7 @@ export default class BaseApi {
         return new Response(res);
     }
 
-    protected async post(path: string, data: any, options: AxiosRequestConfig = {}): Promise<Response> {
+    protected async post(path: string, data: any = null, options: AxiosRequestConfig = {}): Promise<Response> {
         const res: AxiosResponse = await this.axios.post(path, data, {
             ...options,
             validateStatus: function (status) {

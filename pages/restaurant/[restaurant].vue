@@ -5,12 +5,32 @@ import {RouteLocationNormalized} from "vue-router";
 import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 import {download} from "~/helpers/File";
 import RestaurantStatus from "~/enums/RestaurantStatus";
+import {Response} from "~/domain/components/api/BaseApi";
+import Restaurant from "~/domain/entities/Restaurant";
+import {Ref} from "vue";
 	
 	const { $restaurantService }: NuxtApp = useNuxtApp();
 
+	const restaurant: Ref<Restaurant> = ref(null);
+	
 	const route: RouteLocationNormalized = useRoute();
 	const restaurantId: integer = +route.params.restaurant
-	const restaurant = await $restaurantService.getOne(restaurantId);
+
+	restaurant.value = await $restaurantService.getOne(restaurantId);
+	
+	const clickPublishHandler = async () => {
+	  const res: Response = await $restaurantService.publish(restaurantId);
+	  if (res.isOk()) {
+		restaurant.value = await $restaurantService.getOne(restaurantId);
+	  }
+	}
+
+	const clickHideHandler = async () => {
+	  const res: Response = await $restaurantService.hide(restaurantId);
+	  if (res.isOk()) {
+		restaurant.value = await $restaurantService.getOne(restaurantId);
+	  }
+	}
 </script>
 
 <template>
@@ -24,7 +44,26 @@ import RestaurantStatus from "~/enums/RestaurantStatus";
 			  :content="RestaurantStatus[restaurant.status]"
 			  :inline="true"
 		  ></v-badge>
+		  <v-btn
+			  v-if="restaurant.status === RestaurantStatus.HIDDEN"
+			  class="ms-2"
+			  variant="outlined"
+			  size="small"
+			  @click="clickPublishHandler"
+		  >
+			{{$t('Publish')}}
+		  </v-btn>
+		  <v-btn
+			  v-if="restaurant.status === RestaurantStatus.PUBLISHED"
+			  class="ms-2"
+			  variant="outlined"
+			  size="small"
+			  @click="clickHideHandler"
+		  >
+			{{$t('Hide')}}
+		  </v-btn>
 		</v-card-title>
+		
 		<v-card-subtitle>{{ restaurant.address }}</v-card-subtitle>
 	  </div>
 	  <div class="qrcode">

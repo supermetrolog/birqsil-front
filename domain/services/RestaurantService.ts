@@ -38,4 +38,14 @@ export default class RestaurantService extends BaseService {
     {
         return await this.api.restaurant.getOne(id);
     }
+
+    public async publish(id: integer): Promise<Response>
+    {
+        return await this.api.restaurant.publish(id);
+    }
+
+    public async hide(id: integer): Promise<Response>
+    {
+        return await this.api.restaurant.hide(id);
+    }
 }
