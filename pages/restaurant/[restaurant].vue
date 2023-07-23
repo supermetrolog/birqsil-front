@@ -4,6 +4,7 @@ import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
 import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 import {download} from "~/helpers/File";
+import RestaurantStatus from "~/enums/RestaurantStatus";
 	
 	const { $restaurantService }: NuxtApp = useNuxtApp();
 
@@ -18,8 +19,12 @@ import {download} from "~/helpers/File";
 	  <div>
 		<v-card-title class="text-h5">
 		  {{ restaurant.name }}
+		  <v-badge
+			  :color="RestaurantStatus.badge(restaurant.status)"
+			  :content="RestaurantStatus[restaurant.status]"
+			  :inline="true"
+		  ></v-badge>
 		</v-card-title>
-		
 		<v-card-subtitle>{{ restaurant.address }}</v-card-subtitle>
 	  </div>
 	  <div class="qrcode">

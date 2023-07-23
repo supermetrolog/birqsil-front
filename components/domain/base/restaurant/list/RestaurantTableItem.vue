@@ -4,6 +4,7 @@ import Tr from "~/components/UI/table/Tr.vue";
 import Td from "~/components/UI/table/Td.vue";
 import Restaurant from "~/domain/entities/Restaurant";
 import {PropType} from "@vue/runtime-core";
+import RestaurantStatus from "~/enums/RestaurantStatus";
 
 interface IProps {
   restaurant: Restaurant,
@@ -29,7 +30,11 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 	  {{restaurant.address}}
 	</Td>
 	<Td>
-	  {{restaurant.status}}
+	  <v-badge
+		  :color="RestaurantStatus.badge(restaurant.status)"
+		  :content="RestaurantStatus[restaurant.status]"
+		  :inline="true"
+	  ></v-badge>
 	</Td>
 	<Td>
 	  {{ restaurant.created_at }}

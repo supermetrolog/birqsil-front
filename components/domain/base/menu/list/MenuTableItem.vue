@@ -4,7 +4,7 @@ import Tr from "~/components/UI/table/Tr.vue";
 import Td from "~/components/UI/table/Td.vue";
 import {PropType} from "@vue/runtime-core";
 import MenuItem from "~/domain/entities/MenuItem";
-
+import Status from "~/enums/Status";
 interface IProps {
   item: MenuItem,
 }
@@ -15,6 +15,8 @@ const {item}: IProps = defineProps({
 	required: true
   }
 });
+const st = Status[item.status];
+console.log(st.toString(), Status.INACTIVE);
 
 const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 </script>
@@ -31,7 +33,11 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 	  {{item.description}}
 	</Td>
 	<Td>
-	  {{item.status}}
+	  <v-badge
+		  :color="Status.badge(item.status)"
+		  :content="Status[item.status]"
+		  :inline="true"
+	  ></v-badge>
 	</Td>
 	<Td>
 	  {{ item.created_at }}
