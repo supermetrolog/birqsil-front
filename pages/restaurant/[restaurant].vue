@@ -3,6 +3,7 @@ import {NuxtApp, useRoute} from "#app";
 	import {integer} from "vscode-languageserver-types";
 import {RouteLocationNormalized} from "vue-router";
 import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
+import {download} from "~/helpers/File";
 	
 	const { $restaurantService }: NuxtApp = useNuxtApp();
 
@@ -21,14 +22,16 @@ import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 		
 		<v-card-subtitle>{{ restaurant.address }}</v-card-subtitle>
 	  </div>
-	  
-	  <v-avatar
-		  class="ma-3"
-		  size="80"
-		  rounded="0"
-	  >
-		<v-img :src="restaurant.qrcodeLink"></v-img>
-	  </v-avatar>
+	  <div class="qrcode">
+		<v-avatar
+			@click.prevent="download(restaurant.qrcodeLink, 'qrcode.png')"
+			class="ma-3"
+			size="80"
+			rounded="0"
+		>
+		  <v-img :src="restaurant.qrcodeLink"></v-img>
+		</v-avatar>
+	  </div>
 	</div>
   </v-card>
   
@@ -59,5 +62,11 @@ import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
 </template>
 
 <style scoped lang="scss">
-
+.qrcode {
+  &:hover {
+	cursor: pointer;
+	transition: transform 0.1s ease-out;
+	transform: scale(1.05);
+  }
+}
 </style>
