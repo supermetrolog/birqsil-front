@@ -17,11 +17,13 @@ const {item}: IProps = defineProps({
 });
 
 const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
-
 </script>
 
 <template>
   <Tr clickable @click="emit('clickView', item)">
+	<Td>
+		<v-img :src="item.image.link" width="150"></v-img>
+	</Td>
 	<Td>
 	  {{item.title}}
 	</Td>

@@ -5,8 +5,8 @@ import {integer} from "vscode-languageserver-types";
 import {IMenuItemData} from "~/domain/components/api/Menu";
 
 export default class MenuService extends BaseService {
-    public async getAll(restaurantId: integer): Promise<MenuItem[]> {
-        return this.api.menu.getAll(restaurantId);
+    public async getAll(restaurantId: integer, expand: string[] = []): Promise<MenuItem[]> {
+        return this.api.menu.getAll(restaurantId, expand);
     }
 
     public async create(data: IMenuItemData): Promise<MenuItem|null>

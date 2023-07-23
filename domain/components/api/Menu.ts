@@ -11,8 +11,13 @@ export interface IMenuItemData {
 }
 
 export default class Menu extends BaseApi {
-    public async getAll(restaurantId: integer): Promise<MenuItemEntity[]> {
-        const response: Response = await this.get('menu/' + restaurantId);
+    public async getAll(restaurantId: integer, expand: string[] = []): Promise<MenuItemEntity[]> {
+        const queryParams: {expand: string} = {};
+        if (expand.length) {
+            queryParams.expand = expand.join(',');
+        }
+
+        const response: Response = await this.get('menu/' + restaurantId, queryParams);
         return response.data();
     }
 

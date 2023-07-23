@@ -11,23 +11,20 @@ const menuItem: MenuItem = await $menuService.getOne(menuItemId, ['image']);
 </script>
 
 <template>
-  <v-card>
-	<div class="d-flex flex-no-wrap justify-space-between">
-	  <div>
-		<v-card-title class="text-h5">
-		  {{ menuItem.title }}
-		</v-card-title>
-		
-		<v-card-subtitle>{{ menuItem.description }}</v-card-subtitle>
-	  </div>
-	  <div>
-		<v-card-text>
-		  {{menuItem.status}}
-		</v-card-text>
-		<v-card-text>
-		  {{menuItem.file_id}}
-		</v-card-text>
-	  </div>
+  <v-card density="compact" width="400">
+	<v-avatar
+		v-if="menuItem.image"
+		size="100%"
+		rounded="0"
+	>
+	  <v-img :src="menuItem.image.link"></v-img>
+	</v-avatar>
+	<div class="pb-5 pt-2">
+	  <v-card-title class="text-h5">
+		{{ menuItem.title }}
+	  </v-card-title>
+	  
+	  <v-card-subtitle>{{ menuItem.description }}</v-card-subtitle>
 	</div>
   </v-card>
 </template>

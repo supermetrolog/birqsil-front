@@ -1,5 +1,6 @@
 import {integer} from "vscode-languageserver-types";
 import BaseEntity from "~/domain/entities/BaseEntity";
+import File from "~/domain/entities/File";
 
 class MenuItem extends BaseEntity {
     public id: integer;

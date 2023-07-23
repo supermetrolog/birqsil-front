@@ -24,6 +24,7 @@ const {menuItems}: IProps = defineProps({
   <v-table>
 	<thead>
 	  <Tr>
+		<Th>{{ $t('Image') }}</Th>
 		<Th>{{ $t('Title') }}</Th>
 		<Th>{{ $t('Description') }}</Th>
 		<Th>{{ $t('Status') }}</Th>

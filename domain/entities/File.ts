@@ -10,6 +10,7 @@ class File extends BaseEntity {
     public size: integer;
     public source_name: string;
     public type: string;
+    public link: string;
 }
 
 export default File;
