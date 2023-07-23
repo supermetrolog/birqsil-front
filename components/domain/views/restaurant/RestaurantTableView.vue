@@ -25,11 +25,11 @@ const deleteBtnClickHandler = async (restaurant: Restaurant) => {
 }
 
 const updateBtnClickHandler = (restaurant: Restaurant) => {
-  $router.push('restaurant/update/' + restaurant.id);
+  $router.push('/restaurant/update/' + restaurant.id);
 }
 
 const viewBtnClickHandler = (restaurant: Restaurant) => {
-  $router.push('restaurant/' + restaurant.id);
+  $router.push('/restaurant/' + restaurant.id);
 }
 
 </script>
