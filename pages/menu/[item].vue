@@ -14,6 +14,11 @@ const menuItem: MenuItem = await $menuService.getOne(menuItemId, ['image']);
 const breadcrumbs = useBreadcrumbs();
 breadcrumbs.value = [
   {
+	title: $i18n.t('Restaurants'),
+	disabled: false,
+	to: '/'
+  },
+  {
 	title: $i18n.t('Restaurant') + ' #' + menuItem.restaurant_id,
 	disabled: false,
 	to: Route.RESTAURANT + menuItem.restaurant_id

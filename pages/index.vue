@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import RestaurantTableView from "~/components/domain/views/restaurant/RestaurantTableView.vue";
+import {useBreadcrumbs} from "~/composables/breadcrumbs";
+
 const { $i18n } = useNuxtApp();
 
+const title = $i18n.t('Restaurant list');
+
 useSeoMeta({
-  title: $i18n.t('Restaurant list')
+  title: title
 })
+
+const breadcrumbs = useBreadcrumbs();
+breadcrumbs.value = [
+  {
+	title: title,
+	disabled: true,
+	to: ''
+  }
+];
+
 </script>
 
 <template>

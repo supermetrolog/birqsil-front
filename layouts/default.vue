@@ -36,7 +36,15 @@ const signOutHandler = () => {
   <v-app>
 	<v-app-bar :elevation="2">
 	  <v-app-bar-title>
-		BIRQSIL
+		<div class="d-flex flex-no-wrap align-center">
+		  <div>
+			BIRQSIL
+		  </div>
+		  <div class="breadcrumbs pl-5">
+			<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+		  </div>
+		</div>
+	
 	  </v-app-bar-title>
 	  <template #append>
 		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
@@ -59,11 +67,6 @@ const signOutHandler = () => {
 	</v-navigation-drawer>
 	<v-main class="content">
 	  <v-container fluid>
-		<v-card class="mb-4 py-1" v-if="breadcrumbs.length">
-		  <v-card-subtitle>
-			<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
-		  </v-card-subtitle>
-		</v-card>
 		<slot />
 	  </v-container>
 	</v-main>
@@ -73,5 +76,8 @@ const signOutHandler = () => {
 <style scoped lang="scss">
 .content {
   background-color: $color_light;
+}
+.breadcrumbs {
+  font-size: 14px;
 }
 </style>
