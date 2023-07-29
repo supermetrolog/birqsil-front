@@ -15,8 +15,6 @@ const {item}: IProps = defineProps({
 	required: true
   }
 });
-const st = Status[item.status];
-console.log(st.toString(), Status.INACTIVE);
 
 const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 </script>
@@ -24,7 +22,7 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 <template>
   <Tr clickable @click="emit('clickView', item)">
 	<Td>
-		<v-img :src="item.image.link" width="150"></v-img>
+		<v-img :src="item.image.link" width="150px" height="100%"></v-img>
 	</Td>
 	<Td>
 	  {{item.title}}

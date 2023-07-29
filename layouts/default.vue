@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {NuxtApp, useRoute} from "#app";
+import {NuxtApp, useRoute, useState} from "#app";
 import Route from "~/enums/Route";
 import {RouteLocationNormalized} from "vue-router";
+import {Breadcrumb, useBreadcrumbs} from "~/composables/breadcrumbs";
 
 const {$router, $user, $i18n}: NuxtApp = useNuxtApp();
 interface Link {
@@ -9,6 +10,7 @@ interface Link {
   link: string,
   exact: boolean
 }
+
 const links: Link[] = [
   {
 	title: $i18n.t('Restaurants'),
@@ -16,20 +18,19 @@ const links: Link[] = [
 	exact: true,
   },
   {
-	title: $i18n.t('Menu'),
-	link: "/menu",
-	exact: false,
-  },
-  {
 	title: $i18n.t('Support'),
 	link: "/support",
 	exact: false,
   }
 ];
+
+const breadcrumbs = useBreadcrumbs();
+
 const signOutHandler = () => {
   $user.logout();
   $router.push(Route.AUTH_SIGNIN);
 };
+
 </script>
 <template>
   <v-app>
@@ -37,7 +38,7 @@ const signOutHandler = () => {
 	  <v-app-bar-title>
 		BIRQSIL
 	  </v-app-bar-title>
-	  <template v-slot:append>
+	  <template #append>
 		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
 	  </template>
 	</v-app-bar>
@@ -58,6 +59,11 @@ const signOutHandler = () => {
 	</v-navigation-drawer>
 	<v-main class="content">
 	  <v-container fluid>
+		<v-card class="mb-4 py-1" v-if="breadcrumbs.length">
+		  <v-card-subtitle>
+			<v-breadcrumbs :items="breadcrumbs"></v-breadcrumbs>
+		  </v-card-subtitle>
+		</v-card>
 		<slot />
 	  </v-container>
 	</v-main>

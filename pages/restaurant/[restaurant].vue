@@ -8,8 +8,10 @@ import RestaurantStatus from "~/enums/RestaurantStatus";
 import {Response} from "~/domain/components/api/BaseApi";
 import Restaurant from "~/domain/entities/Restaurant";
 import {Ref} from "vue";
+import {useBreadcrumbs} from "~/composables/breadcrumbs";
+import Route from "~/enums/Route";
 	
-	const { $restaurantService }: NuxtApp = useNuxtApp();
+	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();
 
 	const restaurant: Ref<Restaurant> = ref(null);
 	
@@ -31,6 +33,15 @@ import {Ref} from "vue";
 		restaurant.value = await $restaurantService.getOne(restaurantId);
 	  }
 	}
+	
+	const breadcrumbs = useBreadcrumbs();
+	breadcrumbs.value = [
+	  {
+		title: $i18n.t('Restaurants'),
+		disabled: false,
+		to: Route.INDEX
+	  }
+	];
 </script>
 
 <template>
@@ -70,10 +81,10 @@ import {Ref} from "vue";
 		<v-avatar
 			@click.prevent="download(restaurant.qrcodeLink, 'qrcode.png')"
 			class="ma-3"
-			size="80"
 			rounded="0"
+			size="80px"
 		>
-		  <v-img :src="restaurant.qrcodeLink"></v-img>
+		  <v-img :src="restaurant.qrcodeLink" ></v-img>
 		</v-avatar>
 	  </div>
 	</div>
