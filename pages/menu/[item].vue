@@ -3,11 +3,27 @@ import {RouteLocationNormalized} from "vue-router";
 import {NuxtApp, useRoute} from "#app";
 import {integer} from "vscode-languageserver-types";
 import MenuItem from "~/domain/entities/MenuItem";
+import {useBreadcrumbs} from "~/composables/breadcrumbs";
+import Route from "~/enums/Route";
 
-const { $menuService }: NuxtApp = useNuxtApp();
+const { $menuService, $i18n }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();
 const menuItemId: integer = +route.params.item
 const menuItem: MenuItem = await $menuService.getOne(menuItemId, ['image']);
+
+const breadcrumbs = useBreadcrumbs();
+breadcrumbs.value = [
+  {
+	title: $i18n.t('Restaurant') + ' #' + menuItem.restaurant_id,
+	disabled: false,
+	to: Route.RESTAURANT + menuItem.restaurant_id
+  },
+  {
+	title: menuItem.title,
+	disabled: true,
+	to: ''
+  }
+];
 </script>
 
 <template>

@@ -40,6 +40,11 @@ import Route from "~/enums/Route";
 		title: $i18n.t('Restaurants'),
 		disabled: false,
 		to: Route.INDEX
+	  },
+	  {
+		title: restaurant.value.name,
+		disabled: true,
+		to: ''
 	  }
 	];
 </script>
