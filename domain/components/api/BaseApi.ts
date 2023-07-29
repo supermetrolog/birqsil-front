@@ -1,12 +1,17 @@
 import {AxiosRequestConfig, AxiosResponse, AxiosStatic} from "axios";
 import {a} from "vite-node/types-c39b64bb";
 import {integer} from "vscode-languageserver-types";
+import HttpStatus from "~/helpers/HttpStatus";
 
 export class Response {
     private readonly _axiosResponse: AxiosResponse
 
     constructor(response: AxiosResponse) {
         this._axiosResponse = response;
+
+        if (this.status() === 404) {
+            throw createError({ statusCode: HttpStatus.NOT_FOUND, statusMessage: 'Page Not Found' })
+        }
     }
 
     get axiosResponse(): AxiosResponse {

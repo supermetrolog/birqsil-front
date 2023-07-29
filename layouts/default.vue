@@ -14,12 +14,17 @@ interface Link {
 const links: Link[] = [
   {
 	title: $i18n.t('Restaurants'),
-	link: "/",
+	link: Route.INDEX,
 	exact: true,
   },
   {
 	title: $i18n.t('Support'),
-	link: "/support",
+	link: Route.SUPPORT,
+	exact: false,
+  },
+  {
+	title: $i18n.t('Profile'),
+	link: Route.PROFILE,
 	exact: false,
   }
 ];
@@ -47,6 +52,7 @@ const signOutHandler = () => {
 	
 	  </v-app-bar-title>
 	  <template #append>
+		<v-btn icon="mdi mdi-account-tie" :to="Route.PROFILE"></v-btn>
 		<v-btn icon="mdi-logout-variant" @click="signOutHandler"></v-btn>
 	  </template>
 	</v-app-bar>

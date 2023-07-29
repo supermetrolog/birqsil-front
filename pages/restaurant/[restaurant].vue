@@ -10,16 +10,16 @@ import Restaurant from "~/domain/entities/Restaurant";
 import {Ref} from "vue";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
 import Route from "~/enums/Route";
-	
-	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();
 
+	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();
+	
 	const restaurant: Ref<Restaurant> = ref(null);
 	
 	const route: RouteLocationNormalized = useRoute();
 	const restaurantId: integer = +route.params.restaurant
 
 	restaurant.value = await $restaurantService.getOne(restaurantId);
-	
+
 	const clickPublishHandler = async () => {
 	  const res: Response = await $restaurantService.publish(restaurantId);
 	  if (res.isOk()) {
