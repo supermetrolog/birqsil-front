@@ -10,6 +10,7 @@ import Restaurant from "~/domain/entities/Restaurant";
 import {Ref} from "vue";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
 import Route from "~/enums/Route";
+import CategoryTableView from "~/components/domain/views/category/CategoryTableView.vue";
 
 	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();
 	
@@ -93,6 +94,29 @@ import Route from "~/enums/Route";
 		</v-avatar>
 	  </div>
 	</div>
+  </v-card>
+  
+  <v-card class="mt-4">
+	<div class="d-flex flex-no-wrap justify-space-between">
+	  <div>
+		<v-card-title>{{$t('Categories')}}</v-card-title>
+	  </div>
+	  
+	  <v-card-actions>
+		<v-btn
+			class="ms-2"
+			variant="outlined"
+			size="small"
+			:to="'/category/create/' + restaurantId"
+		>
+		  {{$t('Create category')}}
+		</v-btn>
+	  </v-card-actions>
+	</div>
+	
+	<v-card-text>
+	  <CategoryTableView :restaurantId="restaurant.id" />
+	</v-card-text>
   </v-card>
   
   <v-card class="mt-4">
