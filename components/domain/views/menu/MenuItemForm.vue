@@ -31,6 +31,10 @@ const {scenario, updateMenuItem, restaurantId}: IProps = defineProps({
   }
 });
 
+if (scenario === Scenario.CREATE && !restaurantId) {
+  throw new Error('Restaurant id cannot be null when scenario is create')
+}
+
 if (scenario === Scenario.UPDATE && !updateMenuItem) {
   throw new Error('Menu item cannot be null when scenario is update')
 }
@@ -47,7 +51,7 @@ const form: IMenuItemData = reactive({
 if (scenario === Scenario.CREATE) {
   form.restaurant_id = restaurantId;
 }
-console.log(updateMenuItem)
+
 if (scenario === Scenario.UPDATE && updateMenuItem) {
   form.title = updateMenuItem.title;
   form.description = updateMenuItem.description;
@@ -67,8 +71,7 @@ const rules = {
 	  required
 	]
 }
-
-const categoryOpt = await CategoryOptions($categoryService, restaurantId);
+const categoryOpt = await CategoryOptions($categoryService, form.restaurant_id);
 
 const emit = defineEmits(['created', 'updated'])
 
