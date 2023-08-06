@@ -6,8 +6,11 @@ import required from "~/validators/required";
 import MenuItem from "~/domain/entities/MenuItem";
 import {IMenuItemData} from "~/domain/components/api/Menu";
 import {integer} from "vscode-languageserver-types";
+import Status from "~/enums/Status";
+import StatusOptions from "~/helpers/options/StatusOptions";
+import CategoryOptions from "~/helpers/options/CategoryOptions";
 
-const { $menuService }: NuxtApp  = useNuxtApp();
+const { $menuService, $categoryService }: NuxtApp  = useNuxtApp();
 
 interface IProps {
   scenario: Scenario,
@@ -34,6 +37,7 @@ if (scenario === Scenario.UPDATE && !updateMenuItem) {
 
 const form: IMenuItemData = reactive({
   restaurant_id: null,
+  category_id: null,
   title: "",
   description: "",
   status: null,
@@ -49,16 +53,22 @@ if (scenario === Scenario.UPDATE && updateMenuItem) {
   form.description = updateMenuItem.description;
   form.status = updateMenuItem.status;
   form.restaurant_id = updateMenuItem.restaurant_id;
+  form.category_id = updateMenuItem.category_id;
 }
 
 const rules = {
 	title: [
 	  required,
 	],
-  	status: [
+	status: [
 	  required,
+	],
+  	category_id: [
+	  required
 	]
 }
+
+const categoryOpt = await CategoryOptions($categoryService, restaurantId);
 
 const emit = defineEmits(['created', 'updated'])
 
@@ -118,14 +128,20 @@ const handleSubmit = async (event) => {
 		  :label="$t('Description')"
 	  />
 	  <v-select
+		  v-model="form.category_id"
+		  :label="$t('Category')"
+		  :rules="rules.category_id"
+		  density="compact"
+		  :items="categoryOpt"
+		  item-title="label"
+		  item-value="value"
+	  />
+	  <v-select
 		  v-model="form.status"
 		  :label="$t('Status')"
 		  :rules="rules.status"
 		  density="compact"
-		  :items="[
-			{ label: 'Active', value: 9 },
-			{ label: 'Inactive', value: 10 },
-		  ]"
+		  :items="StatusOptions"
 		  item-title="label"
 		  item-value="value"
 		

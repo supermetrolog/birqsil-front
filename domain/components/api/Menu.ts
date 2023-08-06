@@ -4,6 +4,7 @@ import {integer} from "vscode-languageserver-types";
 
 export interface IMenuItemData {
     restaurant_id: integer,
+    category_id: integer,
     title: string,
     description: string,
     status: integer,

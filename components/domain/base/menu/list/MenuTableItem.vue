@@ -31,6 +31,9 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 	  {{item.description}}
 	</Td>
 	<Td>
+	  {{item.category.name}}
+	</Td>
+	<Td>
 	  <v-badge
 		  :color="Status.badge(item.status)"
 		  :content="Status[item.status]"

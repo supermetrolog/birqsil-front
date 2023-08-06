@@ -20,7 +20,7 @@ const {restaurantId}: IProps = defineProps({
 });
 
 const {$menuService, $i18n, $router}: NuxtApp = useNuxtApp();
-const menuItems: Ref<MenuItem[]> = ref(await $menuService.getAll(restaurantId, ['image']));
+const menuItems: Ref<MenuItem[]> = ref(await $menuService.getAll(restaurantId, ['image', 'category']));
 
 const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 
