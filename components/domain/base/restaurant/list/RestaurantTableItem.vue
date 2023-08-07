@@ -17,7 +17,7 @@ const {restaurant}: IProps = defineProps({
   }
 });
 
-const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
+const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickOpenMenu'])
 
 </script>
 
@@ -42,6 +42,7 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 	<Td>
 	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', restaurant)"></v-btn>
 	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', restaurant)"></v-btn>
+	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickOpenMenu', restaurant)"></v-btn>
 	</Td>
   </Tr>
 </template>

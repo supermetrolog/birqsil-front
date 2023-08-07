@@ -32,6 +32,10 @@ const viewBtnClickHandler = (restaurant: Restaurant) => {
   $router.push('/restaurant/' + restaurant.id);
 }
 
+const openMenuBtnClickHandler = (restaurant: Restaurant) => {
+  $router.push('/test/' + restaurant.unique_name);
+}
+
 </script>
 
 <template>
@@ -42,6 +46,7 @@ const viewBtnClickHandler = (restaurant: Restaurant) => {
 	  @clickDelete="deleteBtnClickHandler"
 	  @clickUpdate="updateBtnClickHandler"
 	  @clickView="viewBtnClickHandler"
+	  @clickOpenMenu="openMenuBtnClickHandler"
   />
 </template>
 

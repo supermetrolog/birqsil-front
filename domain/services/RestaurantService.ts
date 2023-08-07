@@ -39,6 +39,11 @@ export default class RestaurantService extends BaseService {
         return await this.api.restaurant.getOne(id);
     }
 
+    public async getOneByUniqueName(uniqueName: string): Promise<Restaurant>
+    {
+        return await this.api.restaurant.getOneByUniqueName(uniqueName);
+    }
+
     public async publish(id: integer): Promise<Response>
     {
         return await this.api.restaurant.publish(id);
