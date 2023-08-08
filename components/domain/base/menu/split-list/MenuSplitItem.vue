@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import MenuItem from "~/domain/entities/MenuItem";
 import {PropType} from "@vue/runtime-core";
+import {integer} from "vscode-languageserver-types";
 
 interface IProps {
   item: MenuItem,
+  selectCount: integer,
 }
 
-const {item}: IProps = defineProps({
+const {item, selectCount}: IProps = defineProps({
   item: {
 	type: Object as PropType<MenuItem>,
 	required: true
+  },
+  selectCount: {
+	type: Number as PropType<integer>,
+	required: false,
   }
 });
+
+const emit = defineEmits(['clickPlus', 'clickMinus']);
 </script>
 
 <template>
@@ -31,7 +39,9 @@ const {item}: IProps = defineProps({
 			  <p class="quantity"><span class="number">220</span> <span class="unit">{{$t('g')}}</span></p>
 		  </div>
 		  <div>
-			<v-btn icon="mdi mdi-plus" density="compact"></v-btn>
+			<v-btn icon="mdi mdi-minus" density="compact" @click.stop="emit('clickMinus', item)"></v-btn>
+			<b class="px-2">{{selectCount ?? 0}}</b>
+			<v-btn icon="mdi mdi-plus" density="compact" @click.stop="emit('clickPlus', item)"></v-btn>
 		  </div>
 		</div>
 	  </v-card-text>
