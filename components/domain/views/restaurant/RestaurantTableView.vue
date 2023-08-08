@@ -33,7 +33,8 @@ const viewBtnClickHandler = (restaurant: Restaurant) => {
 }
 
 const openMenuBtnClickHandler = (restaurant: Restaurant) => {
-  $router.push('/test/' + restaurant.unique_name);
+  const routeData = $router.resolve('/menu/restaurant/' + restaurant.unique_name);
+  window.open(routeData.href, '_blank');
 }
 
 </script>

@@ -40,9 +40,9 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickOpenM
 	  {{ restaurant.created_at }}
 	</Td>
 	<Td>
+	  <v-btn icon="mdi mdi-list-box-outline" density="compact" @click.stop="emit('clickOpenMenu', restaurant)"></v-btn>
 	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', restaurant)"></v-btn>
 	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', restaurant)"></v-btn>
-	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickOpenMenu', restaurant)"></v-btn>
 	</Td>
   </Tr>
 </template>

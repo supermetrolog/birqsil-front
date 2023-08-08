@@ -1,5 +1,6 @@
 import {integer} from "vscode-languageserver-types";
 import BaseEntity from "~/domain/entities/BaseEntity";
+import Category from "~/domain/entities/Category";
 
 class Restaurant extends BaseEntity {
     public id: integer;
@@ -10,5 +11,6 @@ class Restaurant extends BaseEntity {
     public created_at: string;
     public qrcodeLink: string;
     public unique_name: string;
+    public categories: Category[];
 }
 export default Restaurant;

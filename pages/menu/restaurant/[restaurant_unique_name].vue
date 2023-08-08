@@ -4,18 +4,23 @@ import {RouteLocationNormalized} from "vue-router";
 import MenuItem from "~/domain/entities/MenuItem";
 import Restaurant from "~/domain/entities/Restaurant";
 import MenuSplit from "~/components/domain/base/menu/split-list/MenuSplit.vue";
+import SplitListWithNav from "~/components/domain/base/menu/split-list-with-nav/SplitListWithNav.vue";
+
+definePageMeta({
+  layout: 'menu'
+});
 
 const { $router, $menuService, $restaurantService, $i18n }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();
 const restaurantUniqueName: string = route.params.restaurant_unique_name.toString();
 const restaurant: Restaurant = await $restaurantService.getOneByUniqueName(restaurantUniqueName);
-const menuItems: MenuItem[] = await $menuService.getAll(restaurant.id, ['image']);
+// const menuItems: MenuItem[] = await $menuService.getAll(restaurant.id, ['image']);
 
 </script>
 
 <template>
 <div>
-  <MenuSplit :items="menuItems" />
+  <SplitListWithNav :categories="restaurant.categories" />
 </div>
 </template>
 
