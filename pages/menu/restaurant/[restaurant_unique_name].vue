@@ -6,7 +6,7 @@ import Restaurant from "~/domain/entities/Restaurant";
 import MenuSplit from "~/components/domain/base/menu/split-list/MenuSplit.vue";
 import SplitListWithNav from "~/components/domain/base/menu/split-list-with-nav/SplitListWithNav.vue";
 import {Ref} from "vue";
-import {Card, ICard, useCard} from "~/composables/card";
+import {Card, ICard, useCart} from "~/composables/card";
 import {ca} from "vuetify/locale";
 
 definePageMeta({
@@ -18,16 +18,15 @@ const route: RouteLocationNormalized = useRoute();
 const restaurantUniqueName: string = route.params.restaurant_unique_name.toString();
 const restaurant: Restaurant = await $restaurantService.getOneByUniqueName(restaurantUniqueName);
 
-const card: Ref<MenuItem[]> = useCard();
+const cart: Ref<MenuItem[]> = useCart();
 
 const clickMinusHandle = (item: MenuItem): void => {
-	// card.value = card.value.filter((mItem: MenuItem) => mItem.id !== item.id)
-  	const lastItemIndex = card.value.findLastIndex((mItem: MenuItem) => mItem.id === item.id);
-  	card.value = card.value.filter((_, idx) => idx !== lastItemIndex);
+  	const lastItemIndex = cart.value.findLastIndex((mItem: MenuItem) => mItem.id === item.id);
+  	cart.value = cart.value.filter((_, idx) => idx !== lastItemIndex);
 }
 
 const clickPlusHandle = (item: MenuItem): void => {
-	card.value.push(item);
+	cart.value.push(item);
 }
 </script>
 
@@ -35,7 +34,7 @@ const clickPlusHandle = (item: MenuItem): void => {
 <div>
   <SplitListWithNav
 	  :categories="restaurant.categories"
-	  :selectedMenuItems="card"
+	  :selectedMenuItems="cart"
 	  @clickMinus="clickMinusHandle"
 	  @clickPlus="clickPlusHandle"
   />

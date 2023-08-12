@@ -38,9 +38,11 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 			  <p class="price"><span class="number">650</span> <v-icon class="currency" icon="mdi mdi-currency-rub" /></p>
 			  <p class="quantity"><span class="number">220</span> <span class="unit">{{$t('g')}}</span></p>
 		  </div>
-		  <div>
-			<v-btn icon="mdi mdi-minus" density="compact" @click.stop="emit('clickMinus', item)"></v-btn>
-			<b class="px-2">{{selectCount ?? 0}}</b>
+		  <div class="select d-flex justify-space-between text-center align-center">
+			<v-btn v-if="selectCount" icon="mdi mdi-minus" density="compact" @click.stop="emit('clickMinus', item)"></v-btn>
+			<div class="select-count" v-if="selectCount">
+			  <b>{{selectCount}}</b>
+			</div>
 			<v-btn icon="mdi mdi-plus" density="compact" @click.stop="emit('clickPlus', item)"></v-btn>
 		  </div>
 		</div>
@@ -75,6 +77,12 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 	  
 	  .number {
 		font-size: 18px;
+	  }
+	}
+	
+	.select {
+	  &-count {
+		width: 40px;
 	  }
 	}
 </style>

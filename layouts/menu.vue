@@ -1,40 +1,13 @@
 <script setup lang="ts">
-import {NuxtApp, useRoute, useState} from "#app";
+import {NuxtApp} from "#app";
 import Route from "~/enums/Route";
-import {RouteLocationNormalized} from "vue-router";
-import {Breadcrumb, useBreadcrumbs} from "~/composables/breadcrumbs";
+import {Ref} from "vue";
+import MenuItem from "~/domain/entities/MenuItem";
+import {useCart} from "~/composables/card";
 
-const {$router, $user, $i18n}: NuxtApp = useNuxtApp();
-interface Link {
-  title: string,
-  link: string,
-  exact: boolean
-}
+const {$router, $i18n}: NuxtApp = useNuxtApp();
 
-const links: Link[] = [
-  {
-	title: $i18n.t('Restaurants'),
-	link: Route.INDEX,
-	exact: true,
-  },
-  {
-	title: $i18n.t('Support'),
-	link: Route.SUPPORT,
-	exact: false,
-  },
-  {
-	title: $i18n.t('Profile'),
-	link: Route.PROFILE,
-	exact: false,
-  }
-];
-
-const breadcrumbs = useBreadcrumbs();
-
-const signOutHandler = () => {
-  $user.logout();
-  $router.push(Route.AUTH_SIGNIN);
-};
+const cart: Ref<MenuItem[]> = useCart();
 
 </script>
 <template>
@@ -43,6 +16,15 @@ const signOutHandler = () => {
 	  <v-app-bar-title>
 			BIRQSIL
 	  </v-app-bar-title>
+	  <template #append>
+		<v-badge
+			:content="cart.length"
+			color="error"
+			v-if="cart.length"
+		>
+		  <v-btn icon="mdi mdi-cart-outline" :to="Route.PROFILE"></v-btn>
+		</v-badge>
+	  </template>
 	</v-app-bar>
 	<v-main class="content">
 	  <v-container fluid>
