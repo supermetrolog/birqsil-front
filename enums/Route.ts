@@ -5,6 +5,7 @@ enum Route {
     RESTAURANT = '/restaurant/',
     PROFILE = '/profile',
     SUPPORT = '/support',
+    CART = '/cart',
 };
 
 export default Route;
