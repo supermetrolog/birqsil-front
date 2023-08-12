@@ -1,7 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    srcDir: __dirname,
-    buildDir: '.nuxt',
     app: {
         baseURL: '',
         title: "BIRQSIL",

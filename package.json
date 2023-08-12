@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "cabinet:dev": "npx nuxi dev ./cabinet"
+    "cabinet:dev": "nuxt dev ./cabinet"
   },
   "devDependencies": {
     "@mdi/font": "^7.2.96",
