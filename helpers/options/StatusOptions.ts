@@ -1,4 +1,4 @@
-import Status from "~/enums/Status";
+import Status from "./../../enums/Status";
 
 export default [
     { label: 'Active', value: Status.ACTIVE },

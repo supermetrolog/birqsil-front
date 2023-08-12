@@ -1,5 +1,5 @@
 import {integer} from "vscode-languageserver-types";
-import WaitingHash from "~/helpers/Hash";
+import WaitingHash from "./../helpers/Hash";
 function timeout(ms: integer): Promise<any> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
