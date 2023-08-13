@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
-import Scenario from "~/../enums/Scenario";
+import Scenario from "../../../../common/enums/Scenario";
 import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
 import {integer} from "vscode-languageserver-types";
 import MenuItemForm from "~/components/domain/views/menu/MenuItemForm.vue";
-import MenuItem from "~/domain/entities/MenuItem";
+import MenuItem from "../../../../common/domain/entities/MenuItem";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
-import Route from "~/../enums/Route";
+import Route from "../../../../common/enums/Route";
 
 const { $router, $menuService, $i18n }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();

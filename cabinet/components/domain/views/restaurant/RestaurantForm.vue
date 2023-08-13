@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {NuxtApp} from "#app";
 import {PropType} from "@vue/runtime-core";
-import Scenario from "~/../enums/Scenario";
-import required from "~/../validators/required";
+import Scenario from "../../../../../common/enums/Scenario";
+import required from "../../../../../common/validators/required";
 import {IRestaurantData} from "~/domain/components/api/Restaurant";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../../../../common/domain/entities/Restaurant";
 
 const { $i18n, $restaurantService }: NuxtApp  = useNuxtApp();
 

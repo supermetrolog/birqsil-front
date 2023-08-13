@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
-import Scenario from "~/../enums/Scenario";
+import Scenario from "../../../../common/enums/Scenario";
 import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
 import {integer} from "vscode-languageserver-types";
-import Category from "~/domain/entities/Category";
+import Category from "../../../../common/domain/entities/Category";
 import CategoryForm from "~/components/domain/views/category/CategoryForm.vue";
 
 const { $router, $categoryService }: NuxtApp = useNuxtApp();

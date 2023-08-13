@@ -1,5 +1,5 @@
-import BaseApi, {Response} from "~/domain/components/api/BaseApi";
-import MenuItemEntity from "~/domain/entities/MenuItem";
+import BaseApi, {Response} from "../../../../common/domain/components/api/BaseApi";
+import MenuItemEntity from "../../../../common/domain/entities/MenuItem";
 import {integer} from "vscode-languageserver-types";
 
 export interface IMenuItemData {

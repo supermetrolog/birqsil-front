@@ -1,6 +1,6 @@
 import BaseService from "~/domain/services/BaseService";
-import MenuItem from "~/domain/entities/MenuItem";
-import {Response} from "~/domain/components/api/BaseApi";
+import MenuItem from "../../../common/domain/entities/MenuItem";
+import {Response} from "../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 import {IMenuItemData} from "~/domain/components/api/Menu";
 

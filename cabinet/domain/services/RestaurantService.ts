@@ -1,7 +1,7 @@
 import BaseService from "~/domain/services/BaseService";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../../common/domain/entities/Restaurant";
 import {IRestaurantData} from "~/domain/components/api/Restaurant";
-import {Response} from "~/domain/components/api/BaseApi";
+import {Response} from "../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 
 export default class RestaurantService extends BaseService {

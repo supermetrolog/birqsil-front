@@ -1,4 +1,4 @@
-import User from "~/domain/components/user/User";
+import User from "../../common/domain/components/user/User";
 import AuthService from "~/domain/services/AuthService";
 import UserService from "~/domain/services/UserService";
 import {Toast} from "~/plugins/toast";

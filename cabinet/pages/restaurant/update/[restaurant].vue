@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import RestaurantForm from "~/components/domain/views/restaurant/RestaurantForm.vue";
-import Scenario from "~/../enums/Scenario";
+import Scenario from "../../../../common/enums/Scenario";
 import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../../../common/domain/entities/Restaurant";
 import {integer} from "vscode-languageserver-types";
 
 const {$router, $restaurantService}: NuxtApp = useNuxtApp();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import RestaurantForm from "~/components/domain/views/restaurant/RestaurantForm.vue";
-import Scenario from "~/../enums/Scenario";
+import Scenario from "../../../common/enums/Scenario";
 import {NuxtApp} from "#app";
 
 const { $router }: NuxtApp = useNuxtApp();

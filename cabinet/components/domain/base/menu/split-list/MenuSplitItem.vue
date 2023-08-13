@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MenuItem from "~/domain/entities/MenuItem";
+import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 import {PropType} from "@vue/runtime-core";
 import {integer} from "vscode-languageserver-types";
 

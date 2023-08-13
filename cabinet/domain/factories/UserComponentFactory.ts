@@ -1,5 +1,4 @@
-import User from "~/domain/components/user/User";
-import StorageFactory from "~/domain/factories/StorageFactory";
+import User from "../../../common/domain/components/user/User";
 import UserServiceFactory from "~/domain/factories/UserServiceFactory";
 
 export default class UserComponentFactory {

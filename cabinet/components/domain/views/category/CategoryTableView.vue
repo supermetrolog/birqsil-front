@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
 import {NuxtApp} from "#app";
-import Modal from "~/components/UI/Modal.vue";
+import Modal from "../../../../../common/components/UI/Modal.vue";
 import {Ref} from "vue";
-import MenuItem from "~/domain/entities/MenuItem";
+import MenuItem from "../../../../../common/domain/entities/MenuItem";
 import MenuTable from "~/components/domain/base/menu/list/MenuTable.vue";
 import {PropType} from "@vue/runtime-core";
 import {integer} from "vscode-languageserver-types";
-import Category from "~/domain/entities/Category";
+import Category from "../../../../../common/domain/entities/Category";
 import CategoryTable from "~/components/domain/base/category/list/CategoryTable.vue";
 
 interface IProps {

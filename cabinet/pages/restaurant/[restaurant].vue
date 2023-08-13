@@ -3,13 +3,13 @@ import {NuxtApp, useRoute} from "#app";
 	import {integer} from "vscode-languageserver-types";
 import {RouteLocationNormalized} from "vue-router";
 import MenuTableView from "~/components/domain/views/menu/MenuTableView.vue";
-import {download} from "~/../helpers/File";
-import RestaurantStatus from "~/../enums/RestaurantStatus";
-import {Response} from "~/domain/components/api/BaseApi";
-import Restaurant from "~/domain/entities/Restaurant";
+import {download} from "../../../common/helpers/File";
+import RestaurantStatus from "../../../common/enums/RestaurantStatus";
+import {Response} from "../../../common/domain/components/api/BaseApi";
+import Restaurant from "../../../common/domain/entities/Restaurant";
 import {Ref} from "vue";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
-import Route from "~/../enums/Route";
+import Route from "../../../common/enums/Route";
 import CategoryTableView from "~/components/domain/views/category/CategoryTableView.vue";
 
 	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();

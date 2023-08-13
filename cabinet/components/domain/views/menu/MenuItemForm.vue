@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import {NuxtApp} from "#app";
 import {PropType} from "@vue/runtime-core";
-import Scenario from "~/../enums/Scenario";
-import required from "~/../validators/required";
-import MenuItem from "~/domain/entities/MenuItem";
+import Scenario from "../../../../../common/enums/Scenario";
+import required from "../../../../../common/validators/required";
+import MenuItem from "../../../../../common/domain/entities/MenuItem";
 import {IMenuItemData} from "~/domain/components/api/Menu";
 import {integer} from "vscode-languageserver-types";
-import Status from "~/../enums/Status";
-import StatusOptions from "~/../helpers/options/StatusOptions";
+import Status from "../../../../../common/enums/Status";
+import StatusOptions from "../../../../../common/helpers/options/StatusOptions";
 import CategoryOptions from "~/helpers/options/CategoryOptions";
 
 const { $menuService, $categoryService }: NuxtApp  = useNuxtApp();

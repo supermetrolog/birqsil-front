@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import RestaurantTable from "~/components/domain/base/restaurant/list/RestaurantTable.vue";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../../../../common/domain/entities/Restaurant";
 import {NuxtApp} from "#app";
-import Modal from "~/components/UI/Modal.vue";
+import Modal from "../../../../../common/components/UI/Modal.vue";
 import {Ref} from "vue";
 
 const {$restaurantService, $i18n, $router}: NuxtApp = useNuxtApp();

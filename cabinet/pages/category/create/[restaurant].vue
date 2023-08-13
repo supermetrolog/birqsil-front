@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Scenario from "~/../enums/Scenario";
+import Scenario from "../../../../common/enums/Scenario";
 import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
 import {integer} from "vscode-languageserver-types";

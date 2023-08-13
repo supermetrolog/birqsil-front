@@ -1,4 +1,4 @@
-import BaseApi, {Response} from "~/domain/components/api/BaseApi";
+import BaseApi, {Response} from "../../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 
 export interface ISignUpData {

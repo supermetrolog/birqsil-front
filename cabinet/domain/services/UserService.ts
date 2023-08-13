@@ -1,5 +1,5 @@
 import BaseService from "~/domain/services/BaseService";
-import {IdentityService, IUser} from "~/domain/components/user/User";
+import {IdentityService, IUser} from "../../../common/domain/components/user/User";
 
 export default class UserService extends BaseService implements IdentityService {
     public async checkEmailExists(email: string): Promise<boolean> {

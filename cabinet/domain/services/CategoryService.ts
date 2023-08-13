@@ -1,7 +1,7 @@
 import BaseService from "~/domain/services/BaseService";
-import {Response} from "~/domain/components/api/BaseApi";
+import {Response} from "../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
-import Category from "~/domain/entities/Category";
+import Category from "../../../common/domain/entities/Category";
 import {ICategoryData} from "~/domain/components/api/Category";
 
 export default class CategoryService extends BaseService {

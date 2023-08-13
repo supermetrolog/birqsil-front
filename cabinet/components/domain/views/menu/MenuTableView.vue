@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
 import {NuxtApp} from "#app";
-import Modal from "~/components/UI/Modal.vue";
+import Modal from "../../../../../common/components/UI/Modal.vue";
 import {Ref} from "vue";
-import MenuItem from "~/domain/entities/MenuItem";
+import MenuItem from "../../../../../common/domain/entities/MenuItem";
 import MenuTable from "~/components/domain/base/menu/list/MenuTable.vue";
 import {PropType} from "@vue/runtime-core";
 import {integer} from "vscode-languageserver-types";

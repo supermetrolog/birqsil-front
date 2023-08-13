@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
-import Tr from "~/components/UI/table/Tr.vue";
-import Td from "~/components/UI/table/Td.vue";
-import Restaurant from "~/domain/entities/Restaurant";
+import Tr from "../../../../../../common/components/UI/table/Tr.vue";
+import Td from "../../../../../../common/components/UI/table/Td.vue";
+import Restaurant from "../../../../../../common/domain/entities/Restaurant";
 import {PropType} from "@vue/runtime-core";
-import RestaurantStatus from "~/../enums/RestaurantStatus";
+import RestaurantStatus from "../../../../../../common/enums/RestaurantStatus";
 
 interface IProps {
   restaurant: Restaurant,

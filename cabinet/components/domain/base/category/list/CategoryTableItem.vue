@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import Tr from "~/components/UI/table/Tr.vue";
-import Td from "~/components/UI/table/Td.vue";
+import Tr from "../../../../../../common/components/UI/table/Tr.vue";
+import Td from "../../../../../../common/components/UI/table/Td.vue";
 import {PropType} from "@vue/runtime-core";
-import Category from "~/domain/entities/Category";
+import Category from "../../../../../../common/domain/entities/Category";
 interface IProps {
   item: Category,
 }

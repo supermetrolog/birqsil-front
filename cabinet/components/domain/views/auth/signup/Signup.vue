@@ -35,17 +35,17 @@
 </template>
 
 <script setup lang="ts">
-import Input from "~/components/UI/form/Input.vue";
-import Button from "~/components/UI/Button.vue";
-import Color from "~/../enums/Color";
-import InputType from "~/../enums/InputType";
+import Input from "../../../../../../common/components/UI/form/Input.vue";
+import Button from "../../../../../../common/components/UI/Button.vue";
+import Color from "../../../../../../common/enums/Color";
+import InputType from "../../../../../../common/enums/InputType";
 import V from "~/domain/adapters/Validate";
 import {email, helpers, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {ISignUpData} from "~/domain/components/api/Auth";
-import timeout from "~/../validators/timeout";
+import timeout from "../../../../../../common/validators/timeout";
 import {NuxtApp} from "#app";
-import Route from "~/../enums/Route";
+import Route from "../../../../../../common/enums/Route";
 
 const { $i18n, $authService, $userService }: NuxtApp  = useNuxtApp();
 

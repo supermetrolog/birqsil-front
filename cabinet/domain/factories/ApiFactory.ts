@@ -1,4 +1,4 @@
-import API from "~/domain/components/api/API";
+import API from "../../../common/domain/components/api/API";
 
 export default class ApiFactory {
     private static api: API

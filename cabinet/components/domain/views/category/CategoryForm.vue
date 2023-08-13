@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {NuxtApp} from "#app";
 import {PropType} from "@vue/runtime-core";
-import Scenario from "~/../enums/Scenario";
-import required from "~/../validators/required";
+import Scenario from "../../../../../common/enums/Scenario";
+import required from "../../../../../common/validators/required";
 import {integer} from "vscode-languageserver-types";
-import Category from "~/domain/entities/Category";
+import Category from "../../../../../common/domain/entities/Category";
 import {ICategoryData} from "~/domain/components/api/Category";
 
 const { $categoryService }: NuxtApp  = useNuxtApp();

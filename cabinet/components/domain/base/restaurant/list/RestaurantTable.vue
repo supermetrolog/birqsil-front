@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import Tr from "~/components/UI/table/Tr.vue";
-import Th from "~/components/UI/table/Th.vue";
+import Tr from "../../../../../../common/components/UI/table/Tr.vue";
+import Th from "../../../../../../common/components/UI/table/Th.vue";
 import RestaurantTableItem from "~/components/domain/base/restaurant/list/RestaurantTableItem.vue";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../../../../../common/domain/entities/Restaurant";
 import {PropType} from "@vue/runtime-core";
 
 interface IProps {

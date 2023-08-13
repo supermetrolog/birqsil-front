@@ -1,5 +1,5 @@
-import BaseApi, {Response} from "~/domain/components/api/BaseApi";
-import RestaurantEntity from "~/domain/entities/Restaurant";
+import BaseApi, {Response} from "../../../../common/domain/components/api/BaseApi";
+import RestaurantEntity from "../../../../common/domain/entities/Restaurant";
 import {integer} from "vscode-languageserver-types";
 
 export interface IRestaurantData {

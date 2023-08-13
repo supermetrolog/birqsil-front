@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {NuxtApp} from "#app";
-import Route from "~/../enums/Route";
+import Route from "../../common/enums/Route";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
 
 const {$router, $user, $i18n}: NuxtApp = useNuxtApp();

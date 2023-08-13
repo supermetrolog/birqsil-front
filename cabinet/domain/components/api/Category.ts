@@ -1,5 +1,5 @@
-import BaseApi, {Response} from "~/domain/components/api/BaseApi";
-import CategoryEntity from "~/domain/entities/Category";
+import BaseApi, {Response} from "../../../../common/domain/components/api/BaseApi";
+import CategoryEntity from "../../../../common/domain/entities/Category";
 import {integer} from "vscode-languageserver-types";
 
 export interface ICategoryData {
