@@ -19,16 +19,6 @@ export default class Restaurant extends BaseApi {
         return response.data();
     }
 
-    public async getOneByUniqueName(uniqueName: string, expand: string[] = []): Promise<RestaurantEntity>
-    {
-        const queryParams: {expand: string} = {};
-        if (expand.length) {
-            queryParams.expand = expand.join(',');
-        }
-
-        const response: Response = await this.get('restaurant/unique/' + uniqueName, queryParams);
-        return response.data();
-    }
     public async create(data: IRestaurantData): Promise<Response>{
         return await this.post('restaurant', data);
     }

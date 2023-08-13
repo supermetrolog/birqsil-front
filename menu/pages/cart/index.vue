@@ -6,9 +6,6 @@ import MenuSplit from "~/components/domain/base/menu/split-list/MenuSplit.vue";
 import MenuItem from "../../../common/domain/entities/MenuItem";
 import {uniqueArray} from "../../../common/helpers/Array";
 
-definePageMeta({
-  layout: 'menu'
-});
 const cart: Ref<MenuItem[]> = useCart();
 const items: ComputedRef<MenuItem[]> = computed(() => {
   return uniqueArray(cart.value);

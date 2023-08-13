@@ -4,7 +4,6 @@ import Restaurant from "../../common/domain/entities/Restaurant";
 
 export const useRestaurant = () => useState<Restaurant|null>('restaurant', (): Restaurant|null => null);
 
-
 interface IRestaurantAction {
     fetch(restaurantUniqueName: string): Promise<Ref<Restaurant>>;
 }
