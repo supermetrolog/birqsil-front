@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {NuxtApp, useRoute} from "#app";
 import {RouteLocationNormalized} from "vue-router";
-import MenuItem from "~/domain/entities/MenuItem";
-import Restaurant from "~/domain/entities/Restaurant";
 import SplitListWithNav from "~/components/domain/base/menu/split-list-with-nav/SplitListWithNav.vue";
 import {Ref} from "vue";
-import {CartAction, useCart} from "~/composables/front/card";
-import {RestaurantAction, useRestaurant} from "~/composables/front/restaurant";
+import {CartAction, useCart} from "~/composables/card";
+import {RestaurantAction, useRestaurant} from "~/composables/restaurant";
+import Restaurant from "../../../../common/domain/entities/Restaurant";
+import MenuItem from "../../../../common/domain/entities/MenuItem";
 
 definePageMeta({
   layout: 'menu'

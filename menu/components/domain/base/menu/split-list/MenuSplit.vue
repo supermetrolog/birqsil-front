@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import MenuItem from "~/domain/entities/MenuItem";
 import {PropType} from "@vue/runtime-core";
 import MenuSplitItem from "~/components/domain/base/menu/split-list/MenuSplitItem.vue";
+import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 
 interface IProps {
   items: MenuItem[],

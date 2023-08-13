@@ -1,4 +1,4 @@
-import API from "~/domain/components/api/API";
+import API from "../components/api/API";
 
 export default class {
     api: API;

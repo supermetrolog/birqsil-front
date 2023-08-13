@@ -1,7 +1,7 @@
 import {useState} from "#app";
-import MenuItem from "~/domain/entities/MenuItem";
 import {Ref} from "vue";
 import {integer} from "vscode-languageserver-types";
+import MenuItem from "../../common/domain/entities/MenuItem";
 
 export const useCart = () => useState<MenuItem[]>('card', (): MenuItem[] => []);
 

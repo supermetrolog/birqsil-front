@@ -1,10 +1,9 @@
 <script setup lang="ts">
-
-import Tr from "~/components/UI/table/Tr.vue";
-import Th from "~/components/UI/table/Th.vue";
+import Tr from "../../../../../../common/components/UI/table/Tr.vue";
+import Th from "../../../../../../common/components/UI/table/Th.vue";
 import {PropType} from "@vue/runtime-core";
-import MenuItem from "~/domain/entities/MenuItem";
 import MenuTableItem from "~/components/domain/base/menu/list/MenuTableItem.vue";
+import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 
 interface IProps {
   menuItems: MenuItem[],

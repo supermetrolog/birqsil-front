@@ -9,7 +9,7 @@ import {Response} from "../../../common/domain/components/api/BaseApi";
 import Restaurant from "../../../common/domain/entities/Restaurant";
 import {Ref} from "vue";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
-import Route from "../../../common/enums/Route";
+import Route from "../../enums/Route";
 import CategoryTableView from "~/components/domain/views/category/CategoryTableView.vue";
 
 	const { $restaurantService, $i18n }: NuxtApp = useNuxtApp();

@@ -45,7 +45,7 @@ import useVuelidate from "@vuelidate/core";
 import {ISignUpData} from "~/domain/components/api/Auth";
 import timeout from "../../../../../../common/validators/timeout";
 import {NuxtApp} from "#app";
-import Route from "../../../../../../common/enums/Route";
+import Route from "../../../../../enums/Route";
 
 const { $i18n, $authService, $userService }: NuxtApp  = useNuxtApp();
 

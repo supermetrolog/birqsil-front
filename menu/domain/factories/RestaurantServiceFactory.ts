@@ -1,7 +1,5 @@
-import AuthService from "~/domain/services/AuthService";
-import ApiFactory from "~/domain/factories/ApiFactory";
-import UserComponentFactory from "~/domain/factories/UserComponentFactory";
-import RestaurantService from "~/domain/services/RestaurantService";
+import RestaurantService from "../services/RestaurantService";
+import ApiFactory from "./ApiFactory";
 
 export default class RestaurantServiceFactory {
     private static service: RestaurantService;

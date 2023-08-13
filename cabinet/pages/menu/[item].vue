@@ -4,7 +4,7 @@ import {NuxtApp, useRoute} from "#app";
 import {integer} from "vscode-languageserver-types";
 import MenuItem from "../../../common/domain/entities/MenuItem";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
-import Route from "../../../common/enums/Route";
+import Route from "../../enums/Route";
 
 const { $menuService, $i18n }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();

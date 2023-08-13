@@ -38,7 +38,7 @@ import {email, minLength, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {ISignUpData} from "~/domain/components/api/Auth";
 import {NuxtApp} from "#app";
-import Route from "../../../../../../common/enums/Route";
+import Route from "../../../../../enums/Route";
 import {Response} from "../../../../../../common/domain/components/api/BaseApi";
 import {Ref} from "vue";
 

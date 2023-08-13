@@ -2,9 +2,8 @@
 
 import MenuSplit from "~/components/domain/base/menu/split-list/MenuSplit.vue";
 import {PropType} from "@vue/runtime-core";
-import Category from "~/domain/entities/Category";
-import MenuItem from "~/domain/entities/MenuItem";
-import MenuSplitItem from "~/components/domain/base/menu/split-list/MenuSplitItem.vue";
+import Category from "../../../../../../common/domain/entities/Category";
+import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 
 interface IProps {
   categories: Category[],

@@ -1,5 +1,5 @@
-import BaseApi, {Response} from "./BaseApi";
-import RestaurantEntity from "./../../entities/Restaurant";
+import RestaurantEntity from "./../../../../common/domain/entities/Restaurant";
+import BaseApi, {Response} from "../../../../common/domain/components/api/BaseApi";
 
 export default class Restaurant extends BaseApi {
     public async getOneByUniqueName(uniqueName: string, expand: string[] = []): Promise<RestaurantEntity>

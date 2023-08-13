@@ -1,6 +1,6 @@
 import {NuxtApp, useState} from "#app";
 import {Ref} from "vue";
-import Restaurant from "~/domain/entities/Restaurant";
+import Restaurant from "../../common/domain/entities/Restaurant";
 
 export const useRestaurant = () => useState<Restaurant|null>('restaurant', (): Restaurant|null => null);
 

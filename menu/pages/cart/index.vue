@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import {ComputedRef, Ref} from "vue";
-import MenuItem from "~/domain/entities/MenuItem";
-import {CartAction, useCart} from "~/composables/front/card";
+import {CartAction, useCart} from "~/composables/card";
 import MenuSplit from "~/components/domain/base/menu/split-list/MenuSplit.vue";
-import {uniqueArray} from "~/../helpers/Array";
+import MenuItem from "../../../common/domain/entities/MenuItem";
+import {uniqueArray} from "../../../common/helpers/Array";
 
 definePageMeta({
   layout: 'menu'

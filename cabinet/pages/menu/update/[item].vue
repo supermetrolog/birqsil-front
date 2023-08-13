@@ -7,7 +7,7 @@ import {integer} from "vscode-languageserver-types";
 import MenuItemForm from "~/components/domain/views/menu/MenuItemForm.vue";
 import MenuItem from "../../../../common/domain/entities/MenuItem";
 import {useBreadcrumbs} from "~/composables/breadcrumbs";
-import Route from "../../../../common/enums/Route";
+import Route from "../../../enums/Route";
 
 const { $router, $menuService, $i18n }: NuxtApp = useNuxtApp();
 const route: RouteLocationNormalized = useRoute();
