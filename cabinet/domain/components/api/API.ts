@@ -1,9 +1,9 @@
-import Auth from "cabinet/domain/components/api/Auth";
 import axios from "axios";
-import User from "cabinet/domain/components/api/User";
-import Restaurant from "cabinet/domain/components/api/Restaurant";
-import Menu from "cabinet/domain/components/api/Menu";
-import Category from "cabinet/domain/components/api/Category";
+import Auth from "~/domain/components/api/Auth";
+import Restaurant from "~/domain/components/api/Restaurant";
+import User from "~/domain/components/api/User";
+import Menu from "~/domain/components/api/Menu";
+import Category from "~/domain/components/api/Category";
 
 export default class API {
     public baseUrl: string;

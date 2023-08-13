@@ -1,5 +1,5 @@
 import {integer} from "vscode-languageserver-types";
-import BaseEntity from "common/domain/entities/BaseEntity";
+import BaseEntity from "./BaseEntity";
 
 class File extends BaseEntity {
     public created_at: string;

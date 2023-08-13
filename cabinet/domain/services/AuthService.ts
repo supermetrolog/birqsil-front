@@ -1,9 +1,9 @@
-import {IAccessToken, ISignUpData} from "~/domain/components/api/Auth";
+import {ISignUpData} from "~/domain/components/api/Auth";
 import BaseService from "~/domain/services/BaseService";
-import API from "../../../common/domain/components/api/API";
+import API from "../components/api/API";
 import User from "../../../common/domain/components/user/User";
-import {IUser} from "~/domain/components/api/User";
 import {Response} from "../../../common/domain/components/api/BaseApi";
+import IAccessToken from "../../../common/domain/interfaces/AccessToken";
 
 export default class AuthService extends BaseService {
     private user: User;

@@ -1,7 +1,7 @@
 import {integer} from "vscode-languageserver-types";
-import {IAccessToken} from "cabinet/domain/components/api/Auth";
 import axios from "axios";
-import UserTokenStorage from "common/domain/components/user/UserTokenStorage";
+import UserTokenStorage from "./UserTokenStorage";
+import IAccessToken from "../../interfaces/AccessToken";
 
 export interface IUser {
     id: integer,

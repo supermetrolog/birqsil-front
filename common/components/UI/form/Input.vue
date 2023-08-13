@@ -17,8 +17,8 @@
 <script setup lang="ts">
 import InputType from "../../../enums/InputType";
 import {PropType} from "@vue/runtime-core";
-import Validator from "cabinet/domain/interfaces/Validator";
-import ValidateError from "common/components/UI/form/ValidateError.vue";
+import ValidateError from "./ValidateError.vue";
+import Validator from "../../../domain/interfaces/Validator";
 
 interface IProps {
   modelValue: string | number;
