@@ -35,7 +35,7 @@ const clickBackToMenuHandle = () => {
 	  </template>
 	</v-app-bar>
 	<v-main class="content">
-	  <v-container fluid>
+	  <v-container fluid class="px-0">
 		<slot />
 	  </v-container>
 	</v-main>

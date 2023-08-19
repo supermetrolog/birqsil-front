@@ -24,13 +24,15 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 
 <template>
   <v-card density="compact" width="100%">
-	<v-avatar
-		v-if="item.image"
-		size="100%"
-		rounded="0"
-	>
-	  <v-img :src="item.image.link"></v-img>
-	</v-avatar>
+	<div class="avatar">
+	  <v-avatar
+		  v-if="item.image"
+		  size="100%"
+		  rounded="0"
+	  >
+		<v-img :src="item.image.link"></v-img>
+	  </v-avatar>
+	</div>
 	<div class="pb-5 pt-2">
 	  <v-card-text class="pt-0">
 		<div class="d-flex justify-space-between align-end">
@@ -84,5 +86,9 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 	  &-count {
 		width: 40px;
 	  }
+	}
+	
+	.avatar {
+	  min-height: 200px;
 	}
 </style>
