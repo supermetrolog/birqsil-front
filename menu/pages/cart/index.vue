@@ -13,14 +13,14 @@ const items: ComputedRef<MenuItem[]> = computed(() => {
 </script>
 
 <template>
-  <div>
+  <v-container fluid>
 	<MenuSplit
 		:items="items"
 		:selectedMenuItems="cart"
 		@clickMinus="(item: MenuItem): void => CartAction.remove(item)"
 		@clickPlus="(item: MenuItem): void => CartAction.add(item)"
 	/>
-  </div>
+  </v-container>
 </template>
 
 <style scoped lang="scss">
