@@ -5,6 +5,7 @@ import Td from "../../../../../../common/components/UI/table/Td.vue";
 import {PropType} from "@vue/runtime-core";
 import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 import Status from "../../../../../../common/enums/Status";
+import {truncate} from "../../../../../../common/helpers/String";
 interface IProps {
   item: MenuItem,
 }
@@ -28,10 +29,22 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
 	  {{item.title}}
 	</Td>
 	<Td>
-	  {{item.description}}
+	  {{truncate(item.description, 20)}}
 	</Td>
 	<Td>
 	  {{item.category.name}}
+	</Td>
+	<Td>
+	  {{item.price}}
+	</Td>
+	<Td>
+	  {{item.sale_price}}
+	</Td>
+	<Td>
+	  {{item.amount}}
+	</Td>
+	<Td>
+	  {{item.unit_id}}
 	</Td>
 	<Td>
 	  <v-badge

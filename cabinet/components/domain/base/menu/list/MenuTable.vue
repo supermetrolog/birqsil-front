@@ -28,6 +28,10 @@ const {menuItems}: IProps = defineProps({
 		<Th>{{ $t('Title') }}</Th>
 		<Th>{{ $t('Description') }}</Th>
 		<Th>{{ $t('Category') }}</Th>
+		<Th>{{ $t('Price') }}</Th>
+		<Th>{{ $t('Sale Price') }}</Th>
+		<Th>{{ $t('Amount') }}</Th>
+		<Th>{{ $t('Unit') }}</Th>
 		<Th>{{ $t('Status') }}</Th>
 		<Th>{{ $t('Created At') }}</Th>
 		<Th>{{ $t('Actions') }}</Th>

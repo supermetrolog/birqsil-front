@@ -8,7 +8,11 @@ export interface IMenuItemData {
     title: string,
     description: string,
     status: integer,
-    files: FileList
+    files: FileList,
+    price: integer;
+    sale_price: integer;
+    unit_id: integer;
+    amount: integer;
 }
 
 export default class Menu extends BaseApi {

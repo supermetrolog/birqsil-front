@@ -45,7 +45,11 @@ const form: IMenuItemData = reactive({
   title: "",
   description: "",
   status: null,
-  files: null
+  files: null,
+  price: null,
+  sale_price: null,
+  unit_id: null,
+  amount: null
 });
 
 if (scenario === Scenario.CREATE) {
@@ -58,6 +62,10 @@ if (scenario === Scenario.UPDATE && updateMenuItem) {
   form.status = updateMenuItem.status;
   form.restaurant_id = updateMenuItem.restaurant_id;
   form.category_id = updateMenuItem.category_id;
+  form.price = updateMenuItem.price;
+  form.sale_price = updateMenuItem.sale_price;
+  form.amount = updateMenuItem.amount;
+  form.unit_id = updateMenuItem.unit_id;
 }
 
 const rules = {
@@ -68,6 +76,9 @@ const rules = {
 	  required,
 	],
   	category_id: [
+	  required
+	],
+	price: [
 	  required
 	]
 }
@@ -138,6 +149,27 @@ const handleSubmit = async (event) => {
 		  :items="categoryOpt"
 		  item-title="label"
 		  item-value="value"
+	  />
+	  <v-text-field
+		  density="compact"
+		  v-model="form.price"
+		  :rules="rules.price"
+		  :label="$t('Price')"
+	  />
+	  <v-text-field
+		  density="compact"
+		  v-model="form.sale_price"
+		  :label="$t('Sale Price')"
+	  />
+	  <v-text-field
+		  density="compact"
+		  v-model="form.amount"
+		  :label="$t('Amount')"
+	  />
+	  <v-text-field
+		  density="compact"
+		  v-model="form.unit_id"
+		  :label="$t('Unit')"
 	  />
 	  <v-select
 		  v-model="form.status"

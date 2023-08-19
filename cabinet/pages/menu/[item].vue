@@ -44,8 +44,9 @@ breadcrumbs.value = [
 	  <v-card-title class="text-h5">
 		{{ menuItem.title }}
 	  </v-card-title>
-	  
-	  <v-card-subtitle>{{ menuItem.description }}</v-card-subtitle>
+	  <v-card-text>
+		{{ menuItem.description }}
+	  </v-card-text>
 	</div>
   </v-card>
 </template>
