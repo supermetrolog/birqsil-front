@@ -8,10 +8,12 @@ import SplitListWithNav from "~/components/domain/base/menu/split-list-with-nav/
 import {RestaurantAction, useRestaurant} from "~/composables/restaurant";
 import {Ref} from "vue";
 import Restaurant from "../../common/domain/entities/Restaurant";
+import {getLastLevelPart} from "../../common/helpers/Domain";
 
 const { $router, $i18n }: NuxtApp = useNuxtApp();
 
-const url = useRequestURL();
+const url: URL = useRequestURL();
+console.log(getLastLevelPart(url.hostname));
 const title = $i18n.t('MENU');
 
 useSeoMeta({
@@ -19,7 +21,8 @@ useSeoMeta({
 })
 
 const route: RouteLocationNormalized = useRoute();
-const restaurantUniqueName: string = 'vlV2FudFj2JQgX50SETxC7vkoYsCcuwi'
+// vlv2fudfj2jqgx50setxc7vkoysccuwi
+const restaurantUniqueName: string = getLastLevelPart(url.hostname)
 
 await RestaurantAction.fetch(restaurantUniqueName);
 
