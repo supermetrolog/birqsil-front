@@ -25,6 +25,7 @@ const {restaurants}: IProps = defineProps({
 	<thead>
 	  <Tr>
 		<Th>{{ $t('Name') }}</Th>
+		<Th>{{ $t('Unique Name') }}</Th>
 		<Th>{{ $t('Address') }}</Th>
 		<Th>{{ $t('Status') }}</Th>
 		<Th>{{ $t('Created At') }}</Th>

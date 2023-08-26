@@ -27,6 +27,9 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickOpenM
 	  {{restaurant.name}}
 	</Td>
 	<Td>
+	  {{restaurant.unique_name}}
+	</Td>
+	<Td>
 	  {{restaurant.address}}
 	</Td>
 	<Td>
