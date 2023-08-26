@@ -5,6 +5,7 @@ import Scenario from "../../../../../common/enums/Scenario";
 import required from "../../../../../common/validators/required";
 import {IRestaurantData} from "~/domain/components/api/Restaurant";
 import Restaurant from "../../../../../common/domain/entities/Restaurant";
+import timeoutVuetify from "../../../../../common/validators/timeoutVuetify";
 
 const { $i18n, $restaurantService }: NuxtApp  = useNuxtApp();
 
@@ -31,6 +32,7 @@ const form: IRestaurantData = reactive({
   name: "",
   address: "",
   status: null,
+  unique_name: null,
 });
 
 if (scenario === Scenario.UPDATE && updateRestaurant) {
@@ -41,8 +43,14 @@ if (scenario === Scenario.UPDATE && updateRestaurant) {
 
 const rules = {
 	name: [
-		required,
-	]
+	  required,
+	],
+	unique_name: [
+	  required,
+	  timeoutVuetify(1000, (value) => {
+		return "ASUK";
+	  })
+	],
 }
 
 const emit = defineEmits(['created', 'updated'])
@@ -50,6 +58,7 @@ const emit = defineEmits(['created', 'updated'])
 const handleSubmit = async (event) => {
   const result = await event
   
+  console.log(result.valid);
   if (!result.valid) {
 	return
   }
@@ -64,7 +73,7 @@ const handleSubmit = async (event) => {
 	emit('created', restaurant);
   }
   
-  if (scenario == Scenario.UPDATE) {
+  if (scenario == Scenario.UPDATE && updateRestaurant) {
 	const restaurant: Restaurant | null = await $restaurantService.update(updateRestaurant.id, form);
 	
 	if (!restaurant) {
@@ -84,6 +93,11 @@ const handleSubmit = async (event) => {
 		  v-model="form.name"
 		  :label="$t('Name')"
 		  :rules="rules.name"
+	  ></v-text-field>
+	  <v-text-field
+		  v-model="form.unique_name"
+		  :label="$t('Unique Name')"
+		  :rules="rules.unique_name"
 	  ></v-text-field>
 	  <v-text-field
 		  v-model="form.address"

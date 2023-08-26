@@ -5,7 +5,8 @@ import {integer} from "vscode-languageserver-types";
 export interface IRestaurantData {
     name: string,
     address: string,
-    status: integer
+    status: integer,
+    unique_name: string
 }
 
 export default class Restaurant extends BaseApi {
