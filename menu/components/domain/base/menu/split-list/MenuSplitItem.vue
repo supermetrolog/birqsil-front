@@ -38,7 +38,7 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 		<div class="d-flex justify-space-between align-end">
 		  <div class="number-info">
 			  <p class="price"><span class="number">{{item.price}}</span> <v-icon class="currency" icon="mdi mdi-currency-rub" /></p>
-			  <p v-if="item.amount" class="quantity"><span class="number">{{item.amount}}</span> <span class="unit">{{$t('g')}}</span></p>
+			  <p v-if="item.amount" class="quantity"><span class="number">{{item.amount}}</span> <span class="unit">{{ $t(item.unit.value) }}</span></p>
 		  </div>
 		  <div class="select d-flex justify-space-between text-center align-center">
 			<v-btn v-if="selectCount" icon="mdi mdi-minus" density="compact" @click.stop="emit('clickMinus', item)"></v-btn>

@@ -3,7 +3,7 @@ import BaseEntity from "./BaseEntity";
 
 class Unit extends BaseEntity {
     public id: integer;
-    public name: string;
+    public value: string;
 }
 
 export default Unit;
