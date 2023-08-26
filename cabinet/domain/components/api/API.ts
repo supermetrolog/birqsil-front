@@ -4,6 +4,7 @@ import Restaurant from "~/domain/components/api/Restaurant";
 import User from "~/domain/components/api/User";
 import Menu from "~/domain/components/api/Menu";
 import Category from "~/domain/components/api/Category";
+import General from "~/domain/components/api/General";
 
 export default class API {
     public baseUrl: string;
@@ -13,6 +14,7 @@ export default class API {
     private readonly _restaurant: Restaurant
     private readonly _menu: Menu
     private readonly _category: Category
+    private readonly _general: General
 
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
@@ -22,6 +24,7 @@ export default class API {
         this._restaurant = new Restaurant(axios);
         this._menu = new Menu(axios);
         this._category = new Category(axios);
+        this._general = new General(axios);
     }
 
     private configureAxios(): void {
@@ -45,5 +48,9 @@ export default class API {
 
     get category(): Category {
         return this._category;
+    }
+
+    get general(): General {
+        return this._general;
     }
 }

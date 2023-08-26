@@ -5,6 +5,7 @@ import {Toast} from "~/plugins/toast";
 import RestaurantService from "~/domain/services/RestaurantService";
 import MenuService from "~/domain/services/MenuService";
 import CategoryService from "~/domain/services/CategoryService";
+import GeneralService from "~/domain/services/GeneralService";
 declare module '#app' {
     interface NuxtApp {
         $user: User,
@@ -13,6 +14,7 @@ declare module '#app' {
         $restaurantService: RestaurantService,
         $menuService: MenuService,
         $categoryService: CategoryService,
+        $generalService: GeneralService,
         $toast: Toast
     }
 }
@@ -24,6 +26,7 @@ declare module 'vue' {
         $restaurantService: RestaurantService,
         $menuService: MenuService,
         $categoryService: CategoryService,
+        $generalService: GeneralService,
     }
 }
 export { }

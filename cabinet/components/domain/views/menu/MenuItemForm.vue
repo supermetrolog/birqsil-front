@@ -8,9 +8,9 @@ import {IMenuItemData} from "~/domain/components/api/Menu";
 import {integer} from "vscode-languageserver-types";
 import Status from "../../../../../common/enums/Status";
 import StatusOptions from "../../../../../common/helpers/options/StatusOptions";
-import CategoryOptions from "~/helpers/options/CategoryOptions";
+import {Option, options} from "../../../../../common/helpers/options/Options";
 
-const { $menuService, $categoryService }: NuxtApp  = useNuxtApp();
+const { $menuService, $categoryService, $generalService }: NuxtApp  = useNuxtApp();
 
 interface IProps {
   scenario: Scenario,
@@ -78,11 +78,15 @@ const rules = {
   	category_id: [
 	  required
 	],
+	unit_id: [
+	  required
+	],
 	price: [
 	  required
 	]
 }
-const categoryOpt = await CategoryOptions($categoryService, form.restaurant_id);
+const categoryOptions: Option[] = options(await $categoryService.getAll(restaurantId), 'name', 'id');
+const unitOptions: Option[] = options(await $generalService.getAllUnits(), 'value', 'id');
 
 const emit = defineEmits(['created', 'updated'])
 
@@ -146,7 +150,7 @@ const handleSubmit = async (event) => {
 		  :label="$t('Category')"
 		  :rules="rules.category_id"
 		  density="compact"
-		  :items="categoryOpt"
+		  :items="categoryOptions"
 		  item-title="label"
 		  item-value="value"
 	  />
@@ -155,21 +159,28 @@ const handleSubmit = async (event) => {
 		  v-model="form.price"
 		  :rules="rules.price"
 		  :label="$t('Price')"
+		  type="number"
 	  />
 	  <v-text-field
 		  density="compact"
 		  v-model="form.sale_price"
 		  :label="$t('Sale Price')"
+		  type="number"
 	  />
 	  <v-text-field
 		  density="compact"
 		  v-model="form.amount"
 		  :label="$t('Amount')"
+		  type="number"
 	  />
-	  <v-text-field
-		  density="compact"
+	  <v-select
 		  v-model="form.unit_id"
 		  :label="$t('Unit')"
+		  :rules="rules.unit_id"
+		  density="compact"
+		  :items="unitOptions"
+		  item-title="label"
+		  item-value="value"
 	  />
 	  <v-select
 		  v-model="form.status"
@@ -179,7 +190,6 @@ const handleSubmit = async (event) => {
 		  :items="StatusOptions"
 		  item-title="label"
 		  item-value="value"
-		
 	  />
 	  <v-file-input
 		  v-model="form.files"
