@@ -48,4 +48,9 @@ export default class RestaurantService extends BaseService {
     {
         return await this.api.restaurant.hide(id);
     }
+
+    public async checkExistsByUniqueName(uniqueName: string): Promise<boolean>
+    {
+        return (await this.api.restaurant.checkExistsByUniqueName(uniqueName)).exists;
+    }
 }

@@ -39,6 +39,7 @@ if (scenario === Scenario.UPDATE && updateRestaurant) {
   form.name = updateRestaurant.name;
   form.address = updateRestaurant.address;
   form.status = updateRestaurant.status;
+  form.unique_name = updateRestaurant.unique_name;
 }
 
 const rules = {
@@ -47,8 +48,12 @@ const rules = {
 	],
 	unique_name: [
 	  required,
-	  timeoutVuetify(1000, (value) => {
-		return "ASUK";
+	  timeoutVuetify(2000, async (value) => {
+		if (await $restaurantService.checkExistsByUniqueName(value)) {
+		  return $i18n.t('Unique name already taken');
+		}
+		
+		return true;
 	  })
 	],
 }
@@ -58,7 +63,6 @@ const emit = defineEmits(['created', 'updated'])
 const handleSubmit = async (event) => {
   const result = await event
   
-  console.log(result.valid);
   if (!result.valid) {
 	return
   }

@@ -2,6 +2,10 @@ import BaseApi, {Response} from "../../../../common/domain/components/api/BaseAp
 import RestaurantEntity from "../../../../common/domain/entities/Restaurant";
 import {integer} from "vscode-languageserver-types";
 
+export interface IUniqueNameExists {
+    exists: boolean
+}
+
 export interface IRestaurantData {
     name: string,
     address: string,
@@ -40,5 +44,18 @@ export default class Restaurant extends BaseApi {
     public async hide(id: integer): Promise<Response>
     {
         return await this.post('restaurant/' + id + '/hide');
+    }
+
+    public async checkExistsByUniqueName(uniqueName: string): Promise<IUniqueNameExists>
+    {
+        const response: Response = await this.get('restaurant/check-exists', {
+            unique_name: uniqueName
+        });
+
+        if (!response.isOk()) {
+            throw new Error('Api error');
+        }
+
+        return response.data()
     }
 }
