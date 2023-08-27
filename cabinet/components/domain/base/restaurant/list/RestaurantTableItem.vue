@@ -5,6 +5,7 @@ import Td from "../../../../../../common/components/UI/table/Td.vue";
 import Restaurant from "../../../../../../common/domain/entities/Restaurant";
 import {PropType} from "@vue/runtime-core";
 import RestaurantStatus from "../../../../../../common/enums/RestaurantStatus";
+import Formatter from "../../../../../../common/helpers/Formatter";
 
 interface IProps {
   restaurant: Restaurant,
@@ -40,12 +41,14 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickOpenM
 	  ></v-badge>
 	</Td>
 	<Td>
-	  {{ restaurant.created_at }}
+	  {{ Formatter.date().locale(restaurant.created_at, 'ru')}}
 	</Td>
 	<Td>
-	  <v-btn icon="mdi mdi-list-box-outline" density="compact" @click.stop="emit('clickOpenMenu', restaurant)"></v-btn>
-	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', restaurant)"></v-btn>
-	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', restaurant)"></v-btn>
+	  <div class="d-flex">
+		<v-btn icon="mdi mdi-list-box-outline" density="compact" @click.stop="emit('clickOpenMenu', restaurant)"></v-btn>
+		<v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', restaurant)"></v-btn>
+		<v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', restaurant)"></v-btn>
+	  </div>
 	</Td>
   </Tr>
 </template>

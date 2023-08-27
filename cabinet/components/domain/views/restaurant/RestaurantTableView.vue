@@ -5,6 +5,7 @@ import Restaurant from "../../../../../common/domain/entities/Restaurant";
 import {NuxtApp} from "#app";
 import Modal from "../../../../../common/components/UI/Modal.vue";
 import {Ref} from "vue";
+import {RuntimeConfig} from "nuxt/schema";
 
 const {$restaurantService, $i18n, $router}: NuxtApp = useNuxtApp();
 const restaurants: Ref<Restaurant[]> = ref(await $restaurantService.getAll());
@@ -33,8 +34,9 @@ const viewBtnClickHandler = (restaurant: Restaurant) => {
 }
 
 const openMenuBtnClickHandler = (restaurant: Restaurant) => {
-  const routeData = $router.resolve('/menu/restaurant/' + restaurant.unique_name);
-  window.open(routeData.href, '_blank');
+  const config = useRuntimeConfig()
+  const href = 'http://' + restaurant.unique_name + '.' + config.public.menuDomain;
+  window.open(href, '_blank');
 }
 
 </script>

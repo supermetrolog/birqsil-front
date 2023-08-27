@@ -16,6 +16,7 @@ export default defineNuxtConfig({
         // Keys within public, will be also exposed to the client-side
         public: {
             apiBaseUrl: process.env.API_BASE_URL || "",
+            menuDomain: process.env.MENU_DOMAIN || "",
         }
     },
     typescript: {
