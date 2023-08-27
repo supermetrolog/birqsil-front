@@ -20,11 +20,12 @@ const {restaurantId}: IProps = defineProps({
 });
 
 const {$menuService, $i18n, $router}: NuxtApp = useNuxtApp();
-const menuItems: Ref<MenuItem[]> = ref(await $menuService.getAll(restaurantId, ['image', 'category']));
+const fetchItems = async (): Promise<MenuItem[]> => await $menuService.getAll(restaurantId, ['image', 'category', 'unit']);
+
+const menuItems: Ref<MenuItem[]> = ref(await fetchItems());
+
 
 const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
-
-
 
 let modal: Modal = ref(null);
 const deleteBtnClickHandler = async (item: MenuItem) => {
@@ -51,28 +52,28 @@ const viewBtnClickHandler = (item: MenuItem) => {
 
 const sortUp = async (item: MenuItem) => {
 	await $menuService.sortUp(menuItems.value, item);
-	menuItems.value = await $menuService.getAll(restaurantId, ['image', 'category']);
+	menuItems.value = await fetchItems();
 }
 
 const sortDown = async (item: MenuItem) => {
 	await $menuService.sortDown(menuItems.value, item);
-	menuItems.value = await $menuService.getAll(restaurantId, ['image', 'category']);
+	menuItems.value = await fetchItems();
 }
 </script>
 
 <template>
-  <div></div>
-  <Modal ref="modal"/>
-  <MenuTable
-	  :menuItems="menuItems"
-	  @clickDelete="deleteBtnClickHandler"
-	  @clickUpdate="updateBtnClickHandler"
-	  @clickView="viewBtnClickHandler"
-	  @clickSortUp="sortUp"
-	  @clickSortDown="sortDown"
-  />
+  <div>
+	<Modal ref="modal"/>
+	<MenuTable
+		:menuItems="menuItems"
+		@clickDelete="deleteBtnClickHandler"
+		@clickUpdate="updateBtnClickHandler"
+		@clickView="viewBtnClickHandler"
+		@clickSortUp="sortUp"
+		@clickSortDown="sortDown"
+	/>
+  </div>
 </template>
 
 <style scoped lang="scss">
-
 </style>

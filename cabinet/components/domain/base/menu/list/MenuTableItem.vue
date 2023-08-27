@@ -6,6 +6,8 @@ import {PropType} from "@vue/runtime-core";
 import MenuItem from "../../../../../../common/domain/entities/MenuItem";
 import Status from "../../../../../../common/enums/Status";
 import {truncate} from "../../../../../../common/helpers/String";
+import Th from "../../../../../../common/components/UI/table/Th.vue";
+import Formatter from "../../../../../../common/helpers/Formatter";
 interface IProps {
   item: MenuItem,
 }
@@ -23,7 +25,7 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickSortU
 <template>
   <Tr clickable @click="emit('clickView', item)">
 	<Td>
-		<v-img :src="item.image.link" width="150px" height="100%"></v-img>
+		<v-img :src="item.image.link" width="100px" height="100%"></v-img>
 	</Td>
 	<Td>
 	  {{item.title}}
@@ -35,32 +37,31 @@ const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickSortU
 	  {{item.category.name}}
 	</Td>
 	<Td>
-	  {{item.price}}
+	  {{Formatter.currency(item.price)}}
 	</Td>
 	<Td>
-	  {{item.sale_price}}
+	  {{Formatter.currency(item.sale_price)}}
 	</Td>
 	<Td>
-	  {{item.amount}}
+	  {{Formatter.number(item.amount)}} {{item.unit?.value}}
 	</Td>
-	<Td>
-	  {{item.unit_id}}
-	</Td>
-	<Td>
+	<Td class="text-center">
 	  <v-badge
 		  :color="Status.badge(item.status)"
 		  :content="Status[item.status]"
 		  :inline="true"
 	  ></v-badge>
 	</Td>
-	<Td>
-	  {{ item.created_at }}
+	<Td class="text-center">
+	  {{ Formatter.date().locale(item.created_at, 'ru') }}
 	</Td>
-	<Td>
-	  <v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', item)"></v-btn>
-	  <v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', item)"></v-btn>
-	  <v-btn icon="mdi mdi-arrow-up-bold-outline" density="compact" @click.stop="emit('clickSortUp', item)"></v-btn>
-	  <v-btn icon="mdi mdi-arrow-down-bold-outline" density="compact" @click.stop="emit('clickSortDown', item)"></v-btn>
+	<Td width="200px">
+	  <div class="d-flex">
+		<v-btn icon="mdi mdi-arrow-up-bold-outline" density="compact" @click.stop="emit('clickSortUp', item)"></v-btn>
+		<v-btn icon="mdi mdi-arrow-down-bold-outline" density="compact" @click.stop="emit('clickSortDown', item)"></v-btn>
+		<v-btn icon="mdi mdi-pencil-outline" density="compact" @click.stop="emit('clickUpdate', item)"></v-btn>
+		<v-btn icon="mdi mdi-trash-can-outline" density="compact" @click.stop="emit('clickDelete', item)"></v-btn>
+	  </div>
 	</Td>
   </Tr>
 </template>
