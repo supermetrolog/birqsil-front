@@ -2,6 +2,7 @@
 import {PropType} from "@vue/runtime-core";
 import {integer} from "vscode-languageserver-types";
 import MenuItem from "../../../../../../common/domain/entities/MenuItem";
+import Formatter from "../../../../../../common/helpers/Formatter";
 
 interface IProps {
   item: MenuItem,
@@ -37,8 +38,8 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 	  <v-card-text class="pt-0">
 		<div class="d-flex justify-space-between align-end">
 		  <div class="number-info">
-			  <p class="price"><span class="number">{{item.price}}</span> <v-icon class="currency" icon="mdi mdi-currency-rub" /></p>
-			  <p v-if="item.amount" class="quantity"><span class="number">{{item.amount}}</span> <span class="unit">{{ $t(item.unit.value) }}</span></p>
+			  <p class="price"><span class="number">{{Formatter.currency(item.price)}}</span></p>
+			  <p v-if="item.amount" class="quantity"><span class="number">{{Formatter.number(item.amount)}}</span> <span class="unit">{{ $t(item.unit.value) }}</span></p>
 		  </div>
 		  <div class="select d-flex justify-space-between text-center align-center">
 			<v-btn v-if="selectCount" icon="mdi mdi-minus" density="compact" @click.stop="emit('clickMinus', item)"></v-btn>
@@ -73,7 +74,7 @@ const emit = defineEmits(['clickPlus', 'clickMinus']);
 	  
 	  .quantity {
 		.unit {
-		  font-size: 22px;
+		  font-size: 18px;
 		}
 	  }
 	  
