@@ -21,15 +21,14 @@ import CategoryTableView from "~/components/domain/views/category/CategoryTableV
 
 	restaurant.value = await $restaurantService.getOne(restaurantId);
 
-	const clickPublishHandler = async () => {
-	  const res: Response = await $restaurantService.publish(restaurantId);
-	  if (res.isOk()) {
-		restaurant.value = await $restaurantService.getOne(restaurantId);
+	const clickChangeStatus = async () => {
+	  let res: Response;
+	  if (restaurant.value.status === RestaurantStatus.HIDDEN) {
+		res = await $restaurantService.publish(restaurantId);
+	  } else {
+		res = await $restaurantService.hide(restaurantId);
 	  }
-	}
-
-	const clickHideHandler = async () => {
-	  const res: Response = await $restaurantService.hide(restaurantId);
+	  
 	  if (res.isOk()) {
 		restaurant.value = await $restaurantService.getOne(restaurantId);
 	  }
@@ -54,31 +53,22 @@ import CategoryTableView from "~/components/domain/views/category/CategoryTableV
   <v-card>
 	<div class="d-flex flex-no-wrap justify-space-between">
 	  <div>
-		<v-card-title class="text-h5">
+		<v-card-title class="text-h5 d-flex align-center">
 		  {{ restaurant.name }}
+		  <v-switch
+			  class="ml-4"
+			  v-model="restaurant.status"
+			  :value="RestaurantStatus.PUBLISHED"
+			  :false-value="RestaurantStatus.HIDDEN"
+			  hide-details
+			  inset
+			  @click="clickChangeStatus"
+		  ></v-switch>
 		  <v-badge
 			  :color="RestaurantStatus.badge(restaurant.status)"
 			  :content="RestaurantStatus[restaurant.status]"
 			  :inline="true"
 		  ></v-badge>
-		  <v-btn
-			  v-if="restaurant.status === RestaurantStatus.HIDDEN"
-			  class="ms-2"
-			  variant="outlined"
-			  size="small"
-			  @click="clickPublishHandler"
-		  >
-			{{$t('Publish')}}
-		  </v-btn>
-		  <v-btn
-			  v-if="restaurant.status === RestaurantStatus.PUBLISHED"
-			  class="ms-2"
-			  variant="outlined"
-			  size="small"
-			  @click="clickHideHandler"
-		  >
-			{{$t('Hide')}}
-		  </v-btn>
 		</v-card-title>
 		
 		<v-card-subtitle>{{ restaurant.address }}</v-card-subtitle>

@@ -1,6 +1,7 @@
 import {integer} from "vscode-languageserver-types";
 import BaseEntity from "./BaseEntity";
 import Category from "./Category";
+import RestaurantStatus from "../../enums/RestaurantStatus";
 
 class Restaurant extends BaseEntity {
     public id: integer;
