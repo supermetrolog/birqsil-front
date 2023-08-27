@@ -41,4 +41,11 @@ export default class Category extends BaseApi {
     public async remove(id: integer): Promise<Response>{
         return await this.delete('category/' + id);
     }
+
+    public async sort(current_id: integer, after_id: integer | null): Promise<Response>{
+        return await this.post('category/order', {
+            current_id,
+            after_id
+        });
+    }
 }

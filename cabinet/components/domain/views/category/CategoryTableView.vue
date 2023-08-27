@@ -22,7 +22,10 @@ const {restaurantId}: IProps = defineProps({
 });
 
 const {$categoryService, $i18n, $router}: NuxtApp = useNuxtApp();
-const categories: Ref<Category[]> = ref(await $categoryService.getAll(restaurantId));
+
+const fetchItems = async (): Promise<Category[]> => await $categoryService.getAll(restaurantId);
+
+const categories: Ref<Category[]> = ref(await fetchItems());
 
 const emit = defineEmits(['clickDelete', 'clickUpdate'])
 
@@ -51,6 +54,15 @@ const viewBtnClickHandler = (item: MenuItem) => {
   $router.push('/category/' + item.id);
 }
 
+const sortUp = async (item: Category) => {
+  await $categoryService.sortUp(categories.value, item);
+  categories.value = await fetchItems();
+}
+
+const sortDown = async (item: Category) => {
+  await $categoryService.sortDown(categories.value, item);
+  categories.value = await fetchItems();
+}
 </script>
 
 <template>
@@ -60,6 +72,8 @@ const viewBtnClickHandler = (item: MenuItem) => {
 	  :categories="categories"
 	  @clickDelete="deleteBtnClickHandler"
 	  @clickUpdate="updateBtnClickHandler"
+	  @clickSortUp="sortUp"
+	  @clickSortDown="sortDown"
   />
 </template>
 

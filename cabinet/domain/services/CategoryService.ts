@@ -3,6 +3,8 @@ import {Response} from "../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 import Category from "../../../common/domain/entities/Category";
 import {ICategoryData} from "~/domain/components/api/Category";
+import MenuItem from "../../../common/domain/entities/MenuItem";
+import {getValue} from "../../../common/helpers/Array";
 
 export default class CategoryService extends BaseService {
     public async getAll(restaurantId: integer, expand: string[] = []): Promise<Category[]> {
@@ -37,5 +39,21 @@ export default class CategoryService extends BaseService {
     public async getOne(id: integer, expand: string[] = []): Promise<Category>
     {
         return await this.api.category.getOne(id, expand);
+    }
+
+    public async sortUp(items: Category[], item: Category): Promise<boolean>
+    {
+        const index: integer = items.indexOf(item);
+        const afterItem: Category|null = getValue(items, index - 1);
+
+        return (await this.api.category.sort(item.id, afterItem?.id ?? null)).isOk();
+    }
+
+    public async sortDown(items: Category[], item: Category): Promise<boolean>
+    {
+        const index: integer = items.indexOf(item);
+        const afterItem: Category|null = getValue(items, index + 2);
+
+        return (await this.api.category.sort(item.id, afterItem?.id ?? null)).isOk();
     }
 }

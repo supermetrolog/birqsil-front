@@ -11,7 +11,7 @@ import CategoryTableItem from "~/components/domain/base/category/list/CategoryTa
 interface IProps {
   menuItems: MenuItem[],
 }
-const emit = defineEmits(['clickDelete', 'clickUpdate'])
+const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickSortUp', 'clickSortDown'])
 
 const {categories}: IProps = defineProps({
   categories: {
@@ -38,6 +38,8 @@ const {categories}: IProps = defineProps({
 		  :item="item"
 		  @clickDelete="args => emit('clickDelete', args)"
 		  @clickUpdate="args => emit('clickUpdate', args)"
+		  @clickSortUp="args => emit('clickSortUp', args)"
+		  @clickSortDown="args => emit('clickSortDown', args)"
 	  />
 	</tbody>
   </v-table>
