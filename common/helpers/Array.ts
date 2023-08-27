@@ -5,3 +5,11 @@ export const uniqueArray = (array: any[]): any[] => {
         return self.indexOf(item) == pos;
     })
 };
+
+export const getValue = (array: any[], key: string|integer): any|null => {
+    if (key in array) {
+        return array[key];
+    }
+
+    return null;
+}

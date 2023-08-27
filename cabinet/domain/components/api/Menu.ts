@@ -37,15 +37,12 @@ export default class Menu extends BaseApi {
         return new MenuItemEntity(response.data());
     }
 
-
     public async create(data: IMenuItemData): Promise<Response>{
         return await this.post('menu', data);
     }
-
     public async update(id: integer, data: IMenuItemData): Promise<Response>{
         return await this.put('menu/' + id, data);
     }
-
     public async remove(id: integer): Promise<Response>{
         return await this.delete('menu/' + id);
     }
@@ -55,4 +52,12 @@ export default class Menu extends BaseApi {
         fd.append('image', file);
         return await this.post('menu/' + id + '/upload-file', fd);
     }
+
+    public async sort(current_id: integer, after_id: integer | null): Promise<Response>{
+        return await this.post('menu/order', {
+            current_id,
+            after_id
+        });
+    }
+
 }

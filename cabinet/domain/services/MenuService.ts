@@ -3,6 +3,8 @@ import MenuItem from "../../../common/domain/entities/MenuItem";
 import {Response} from "../../../common/domain/components/api/BaseApi";
 import {integer} from "vscode-languageserver-types";
 import {IMenuItemData} from "~/domain/components/api/Menu";
+import {getValue} from "../../../common/helpers/Array";
+import menuItem from "../../../common/domain/entities/MenuItem";
 
 export default class MenuService extends BaseService {
     public async getAll(restaurantId: integer, expand: string[] = []): Promise<MenuItem[]> {
@@ -46,5 +48,21 @@ export default class MenuService extends BaseService {
         }
 
         return false;
+    }
+
+    public async sortUp(items: MenuItem[], item: MenuItem): Promise<boolean>
+    {
+        const index: integer = items.indexOf(item);
+        const afterItem: MenuItem|null = getValue(items, index - 1);
+
+        return (await this.api.menu.sort(item.id, afterItem?.id ?? null)).isOk();
+    }
+
+    public async sortDown(items: MenuItem[], item: MenuItem): Promise<boolean>
+    {
+        const index: integer = items.indexOf(item);
+        const afterItem: MenuItem|null = getValue(items, index + 2);
+
+        return (await this.api.menu.sort(item.id, afterItem?.id ?? null)).isOk();
     }
 }

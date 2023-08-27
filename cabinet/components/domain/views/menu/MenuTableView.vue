@@ -49,6 +49,15 @@ const viewBtnClickHandler = (item: MenuItem) => {
   $router.push('/menu/' + item.id);
 }
 
+const sortUp = async (item: MenuItem) => {
+	await $menuService.sortUp(menuItems.value, item);
+	menuItems.value = await $menuService.getAll(restaurantId, ['image', 'category']);
+}
+
+const sortDown = async (item: MenuItem) => {
+	await $menuService.sortDown(menuItems.value, item);
+	menuItems.value = await $menuService.getAll(restaurantId, ['image', 'category']);
+}
 </script>
 
 <template>
@@ -59,6 +68,8 @@ const viewBtnClickHandler = (item: MenuItem) => {
 	  @clickDelete="deleteBtnClickHandler"
 	  @clickUpdate="updateBtnClickHandler"
 	  @clickView="viewBtnClickHandler"
+	  @clickSortUp="sortUp"
+	  @clickSortDown="sortDown"
   />
 </template>
 

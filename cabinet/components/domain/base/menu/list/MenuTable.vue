@@ -9,7 +9,7 @@ import MenuTableItem from "~/components/domain/base/menu/list/MenuTableItem.vue"
 interface IProps {
   menuItems: MenuItem[],
 }
-const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView'])
+const emit = defineEmits(['clickDelete', 'clickUpdate', 'clickView', 'clickSortUp', 'clickSortDown'])
 
 const {menuItems}: IProps = defineProps({
   menuItems: {
@@ -45,6 +45,8 @@ const {menuItems}: IProps = defineProps({
 		  @clickDelete="args => emit('clickDelete', args)"
 		  @clickUpdate="args => emit('clickUpdate', args)"
 		  @clickView="args => emit('clickView', args)"
+		  @clickSortUp="args => emit('clickSortUp', args)"
+		  @clickSortDown="args => emit('clickSortDown', args)"
 	  />
 	</tbody>
   </v-table>
