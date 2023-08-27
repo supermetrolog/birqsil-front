@@ -81,11 +81,14 @@ const rules = {
 	unit_id: [
 	  required
 	],
+	amount: [
+	  required
+	],
 	price: [
 	  required
 	]
 }
-const categoryOptions: Option[] = options(await $categoryService.getAll(restaurantId), 'name', 'id');
+const categoryOptions: Option[] = options(await $categoryService.getAll(form.restaurant_id), 'name', 'id');
 const unitOptions: Option[] = options(await $generalService.getAllUnits(), 'value', 'id');
 
 const emit = defineEmits(['created', 'updated'])
@@ -170,6 +173,7 @@ const handleSubmit = async (event) => {
 	  <v-text-field
 		  density="compact"
 		  v-model="form.amount"
+		  :rules="rules.amount"
 		  :label="$t('Amount')"
 		  type="number"
 	  />
