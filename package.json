@@ -2,8 +2,10 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
+    "cabinet:build": "nuxt build ./cabinet",
+    "cabinet:serve": "PORT=3000 node cabinet/.output/server/index.mjs",
+    "menu:build": "nuxt build ./menu",
+    "menu:serve": "PORT=4000 node menu/.output/server/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
